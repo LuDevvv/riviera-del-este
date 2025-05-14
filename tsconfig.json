@@ -27,7 +27,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@services/*": ["src/services/*"],
       "@lib/*": ["src/lib/*"],
-      "@types/*": ["src/types/*"],
+      "@types/*": ["src/lib/types/*"],
       "@styles/*": ["src/styles/*"]
     }
   },
