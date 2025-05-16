@@ -1,13 +1,19 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@i18n/routing";
-import { Geist } from "next/font/google";
+import { DM_Sans, Jost } from "next/font/google";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-dm-sans",
+});
+
+const jost = Jost({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jost",
 });
 
 export function generateStaticParams() {
@@ -28,6 +34,8 @@ export const metadata = {
     "inversión inmobiliaria",
     "residencias de lujo",
     "riviera del este",
+    "la romana",
+    "república dominicana",
   ],
   openGraph: {
     type: "website",
@@ -39,6 +47,7 @@ export const metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "Riviera del Este - Residencias de Lujo",
       },
     ],
   },
@@ -75,16 +84,16 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = (await import(`../../messages/${params.locale}.json`))
+  const messages = (await import(`@i18n/messages/${params.locale}.json`))
     .default;
 
   return (
     <html
       lang={params.locale}
-      className={`${geistSans.variable} antialiased`}
+      className={`${dmSans.variable} ${jost.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body>
+      <body className="font-sans">
         <NextIntlClientProvider
           locale={params.locale}
           messages={messages}
