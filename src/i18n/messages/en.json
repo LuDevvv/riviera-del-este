@@ -10,6 +10,12 @@
         "explore": "Explore Property"
       }
     },
+    "counter": {
+      "startsAbout": "Everything starts about",
+      "hours": "HOURS",
+      "minutes": "MINUTES",
+      "seconds": "SECONDS"
+    },
     "features": {
       "spaciousRooms": "Spacious Rooms",
       "privateGarden": "Private Garden",

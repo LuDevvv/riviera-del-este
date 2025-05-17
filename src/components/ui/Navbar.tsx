@@ -31,16 +31,8 @@ export default function Navbar() {
 
   // Smoother fade animation for navbar
   const navbarVariants = {
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.3 },
-    },
-    hidden: {
-      y: -100,
-      opacity: 0,
-      transition: { duration: 0.3 },
-    },
+    visible: { y: 0, opacity: 1 },
+    hidden: { y: -80, opacity: 0 },
   };
 
   // Navbar styles with smooth transition
@@ -51,7 +43,7 @@ export default function Navbar() {
     borderRadius: scrollPosition < 10 && !isMobile ? "0.6rem" : "0",
     margin: scrollPosition < 10 && !isMobile ? "3rem auto" : "0",
     maxWidth: scrollPosition < 10 && !isMobile ? "1300px" : "100%",
-    transition: "all 0.6s ease", // Slower, smoother transition
+    transform: "translateZ(0)", // Forces hardware acceleration
   };
 
   const navbarVisibility =
@@ -72,18 +64,19 @@ export default function Navbar() {
   return (
     <motion.header
       className="fixed w-full z-50"
-      initial="visible"
-      animate={navbarVisibility}
-      variants={navbarVariants}
+      initial={false}
+      animate={{
+        y: navbarVisibility === "hidden" ? -80 : 0,
+        opacity: navbarVisibility === "hidden" ? 0 : 1,
+      }}
+      transition={{ duration: 0.2 }}
     >
       <motion.div
         className="py-4"
         style={navbarStyle}
-        initial={false}
-        animate={{ opacity: 1 }}
         key={scrollPosition < 10 ? "floating" : "full"}
       >
-        <div className="container mx-auto py-[6px] px-6">
+        <div className="max-w-[1300px] mx-auto py-[6px] px-6">
           <div className="flex gap-2 items-center justify-between">
             <Link href="/" className="flex items-center">
               <Image
@@ -119,17 +112,22 @@ export default function Navbar() {
               </div>
             </div>
 
+            {/* Mobile actions */}
+            <div className="flex items-center gap-3 md:hidden">
+              <LanguageSwitcher />
+
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-gray-800 z-50"
+                aria-label="Toggle menu"
+              >
+                {!mobileMenuOpen ? <Menu size={28} /> : <X size={28} />}
+              </button>
+            </div>
+
+            {/* Desktop Schedule button */}
             <button className="hidden md:flex bg-secondary hover:bg-secondary-dark text-white rounded px-4 py-2 text-sm font-medium transition-colors ml-4">
               {t("schedule")}
-            </button>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-gray-800 z-50"
-              aria-label="Toggle menu"
-            >
-              {!mobileMenuOpen ? <Menu size={28} /> : <X size={28} />}
             </button>
           </div>
         </div>
@@ -138,12 +136,11 @@ export default function Navbar() {
       {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
+          <div
             className="fixed top-[60px] inset-x-0 bottom-0 bg-white z-40 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+            style={{
+              animation: "fadeIn 0.2s ease-in-out forwards",
+            }}
           >
             <div className="overflow-y-auto h-full">
               <nav>
@@ -175,13 +172,6 @@ export default function Navbar() {
                   </React.Fragment>
                 ))}
 
-                {/* Language switcher */}
-                <div className="px-4 py-4 flex justify-center border-t mt-4">
-                  <div className="inline-block">
-                    <LanguageSwitcher />
-                  </div>
-                </div>
-
                 {/* Schedule button */}
                 <div className="px-4 py-6">
                   <button className="w-full bg-secondary hover:bg-secondary-dark text-white rounded-md py-3 text-base font-medium transition-colors">
@@ -190,7 +180,7 @@ export default function Navbar() {
                 </div>
               </nav>
             </div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </motion.header>

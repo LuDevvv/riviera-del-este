@@ -27,7 +27,7 @@ export default function FeaturesBar() {
 
   return (
     <div className="w-full py-8">
-      <div className="container mx-auto px-4 max-w-[1300px]">
+      <div className="container mx-auto max-w-[1300px]">
         <div className="grid grid-cols-4 gap-4">
           {features.map((feature) => (
             <div key={feature.id} className="text-center">

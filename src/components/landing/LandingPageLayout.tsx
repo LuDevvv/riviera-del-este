@@ -2,7 +2,7 @@
 
 import React from "react";
 import Navbar from "@components/ui/Navbar";
-import Hero from "@components/ui/Hero";
+import Hero from "@components/sections/Hero";
 
 export default function LandingPageLayout({
   children,

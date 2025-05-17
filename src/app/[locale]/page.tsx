@@ -1,10 +1,7 @@
 import React from "react";
-import { useTranslations } from "next-intl";
 import LandingPageLayout from "@components/landing/LandingPageLayout";
 
 export default function Home() {
-  const t = useTranslations("home");
-
   return (
     <LandingPageLayout>
       {/* Overview Section Placeholder */}

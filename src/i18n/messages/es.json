@@ -10,6 +10,12 @@
         "explore": "Explorar Propiedad"
       }
     },
+    "counter": {
+      "startsAbout": "Todo comienza en",
+      "hours": "HORAS",
+      "minutes": "MINUTOS",
+      "seconds": "SEGUNDOS"
+    },
     "features": {
       "spaciousRooms": "Habitaciones Amplias",
       "privateGarden": "Jardín Privado",
