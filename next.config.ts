@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "madebydesignesia.com",
+        port: "",
+        pathname: "/themes/residem/images/**",
+      },
     ],
   },
 

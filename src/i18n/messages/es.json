@@ -1,0 +1,63 @@
+{
+  "home": {
+    "title": "Riviera del Este - Residencias de Lujo",
+    "hero": {
+      "headline": "Elegancia y Confort",
+      "subheadline": "en un Espacio Moderno",
+      "address": "Calle 40 No. B4, La Romana, República Dominicana",
+      "cta": {
+        "schedule": "Programar Visita",
+        "explore": "Explorar Propiedad"
+      }
+    },
+    "features": {
+      "spaciousRooms": "Habitaciones Amplias",
+      "privateGarden": "Jardín Privado",
+      "walkInClosets": "Vestidores",
+      "swimmingPool": "Piscina"
+    },
+    "about": {
+      "title": "Sobre Riviera del Este",
+      "description": "Ubicado en la exclusiva zona de La Romana, Riviera del Este ofrece residencias de lujo con impresionantes vistas al océano. Nuestro proyecto residencial combina diseño moderno con el confort caribeño."
+    },
+    "units": {
+      "title": "Unidades Disponibles",
+      "subtitle": "Encuentra tu espacio ideal",
+      "onebed": "1 Habitación",
+      "twobed": "2 Habitaciones",
+      "threebed": "3 Habitaciones",
+      "penthouse": "Penthouse"
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "subtitle": "Estaremos encantados de atenderte",
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "phone": "Teléfono",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje",
+      "success": "Mensaje enviado exitosamente",
+      "error": "Hubo un error al enviar tu mensaje"
+    }
+  },
+  "common": {
+    "nav": {
+      "home": "Inicio",
+      "overview": "Información",
+      "rooms": "Habitaciones",
+      "gallery": "Galería",
+      "floorplan": "Planos",
+      "contact": "Contacto",
+      "schedule": "Programar Visita"
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio"
+    },
+    "languageSwitcher": {
+      "en": "Inglés",
+      "es": "Español"
+    }
+  }
+}
