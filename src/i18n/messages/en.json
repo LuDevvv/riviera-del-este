@@ -36,14 +36,23 @@
     },
     "contact": {
       "title": "Contact Us",
-      "subtitle": "We'll be happy to assist you",
+      "subtitle": "Schedule a Visit",
+      "description": "We'll be happy to assist you with any questions you might have",
       "name": "Full Name",
       "email": "Email",
       "phone": "Phone",
+      "date": "Visit Date",
+      "time": "Visit Time",
       "message": "Message",
-      "submit": "Send Message",
+      "submit": "SEND MESSAGE",
+      "sending": "Sending...",
       "success": "Message sent successfully",
-      "error": "There was an error sending your message"
+      "error": "There was an error sending your message",
+      "nameTooShort": "Name must be at least 2 characters",
+      "emailInvalid": "Invalid email",
+      "dateRequired": "Date is required",
+      "timeRequired": "Time is required",
+      "messageTooShort": "Message must be at least 10 characters"
     }
   },
   "common": {

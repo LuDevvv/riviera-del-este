@@ -1,5 +1,6 @@
 import React from "react";
 import LandingPageLayout from "@components/landing/LandingPageLayout";
+import Contact from "@components/sections/Contact";
 
 export default function Home() {
   return (
@@ -40,14 +41,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section Placeholder */}
-      <section id="contact" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center font-display mb-12">
-            Contact Section
-          </h2>
-        </div>
-      </section>
+      <Contact />
 
       {/* Footer Placeholder */}
       <footer className="bg-gray-900 text-white py-12">

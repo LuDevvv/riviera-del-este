@@ -25,6 +25,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/themes/residem/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 

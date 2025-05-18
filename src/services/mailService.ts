@@ -69,7 +69,8 @@ export class EmailService {
           <div class="content">
             <p><strong>Nombre:</strong> ${this.sanitizeHTML(data.name)}</p>
             <p><strong>Email:</strong> ${this.sanitizeHTML(data.email)}</p>
-            <p><strong>Teléfono:</strong> ${this.sanitizeHTML(data.phone)}</p>
+            <p><strong>Fecha:</strong> ${this.sanitizeHTML(data.date)}</p>
+            <p><strong>Hora:</strong> ${this.sanitizeHTML(data.time)}</p>
             <p><strong>Mensaje:</strong></p>
             <p>${this.sanitizeHTML(data.message)}</p>
           </div>

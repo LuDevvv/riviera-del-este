@@ -36,14 +36,23 @@
     },
     "contact": {
       "title": "Contáctanos",
-      "subtitle": "Estaremos encantados de atenderte",
+      "subtitle": "Programa una Visita",
+      "description": "Estaremos encantados de atenderte para responder a todas tus preguntas",
       "name": "Nombre Completo",
       "email": "Correo Electrónico",
       "phone": "Teléfono",
+      "date": "Fecha de Visita",
+      "time": "Hora de Visita",
       "message": "Mensaje",
-      "submit": "Enviar Mensaje",
+      "submit": "ENVIAR MENSAJE",
+      "sending": "Enviando...",
       "success": "Mensaje enviado exitosamente",
-      "error": "Hubo un error al enviar tu mensaje"
+      "error": "Hubo un error al enviar tu mensaje",
+      "nameTooShort": "El nombre debe tener al menos 2 caracteres",
+      "emailInvalid": "Email inválido",
+      "dateRequired": "Fecha requerida",
+      "timeRequired": "Hora requerida",
+      "messageTooShort": "El mensaje debe tener al menos 10 caracteres"
     }
   },
   "common": {
