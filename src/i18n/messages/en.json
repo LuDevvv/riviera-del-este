@@ -22,6 +22,10 @@
       "walkInClosets": "Walk-in Closets",
       "swimmingPool": "Swimming Pool"
     },
+    "partners": {
+      "title": "Our Partners",
+      "ariaLabel": "Partners logo carousel"
+    },
     "about": {
       "title": "About Riviera del Este",
       "description": "Located in the exclusive area of La Romana, Riviera del Este offers luxury residences with breathtaking ocean views. Our residential project combines modern design with Caribbean comfort."
@@ -68,7 +72,19 @@
     "footer": {
       "rights": "All rights reserved",
       "privacy": "Privacy Policy",
-      "terms": "Terms of Service"
+      "terms": "Terms of Service",
+      "contactTitle": "Contact Us",
+      "description": "Riviera del Este offers premium properties in the heart of La Romana, featuring breathtaking views and modern amenities for a comfortable luxury lifestyle.",
+      "address": "320 40th Street B4, La Romana, Dominican Republic",
+      "quickLinks": "Quick Links",
+      "newsletter": "Newsletter",
+      "newsletterDesc": "Subscribe to receive the latest news and updates about our properties.",
+      "emailPlaceholder": "Your email",
+      "subscribe": "Subscribe",
+      "event": {
+        "dates": "Property Showcase: May 20-25, 2025",
+        "hours": "Open Daily: 10:00 AM - 6:00 PM"
+      }
     },
     "languageSwitcher": {
       "en": "English",

@@ -1,6 +1,8 @@
 import React from "react";
 import LandingPageLayout from "@components/landing/LandingPageLayout";
 import Contact from "@components/sections/Contact";
+import Partners from "@components/sections/Partners";
+import Footer from "@components/sections/Footer";
 
 export default function Home() {
   return (
@@ -41,16 +43,9 @@ export default function Home() {
         </div>
       </section>
 
+      <Partners />
       <Contact />
-
-      {/* Footer Placeholder */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <p className="text-center">
-            © {new Date().getFullYear()} Riviera del Este. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </LandingPageLayout>
   );
 }

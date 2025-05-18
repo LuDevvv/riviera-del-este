@@ -80,6 +80,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  // Check if the locale is valid
   if (!hasLocale(routing.locales, params.locale)) {
     notFound();
   }

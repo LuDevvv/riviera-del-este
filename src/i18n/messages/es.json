@@ -22,6 +22,10 @@
       "walkInClosets": "Vestidores",
       "swimmingPool": "Piscina"
     },
+    "partners": {
+      "title": "Nuestros Colaboradores",
+      "ariaLabel": "Carrusel de logos de colaboradores"
+    },
     "about": {
       "title": "Sobre Riviera del Este",
       "description": "Ubicado en la exclusiva zona de La Romana, Riviera del Este ofrece residencias de lujo con impresionantes vistas al océano. Nuestro proyecto residencial combina diseño moderno con el confort caribeño."
@@ -68,7 +72,19 @@
     "footer": {
       "rights": "Todos los derechos reservados",
       "privacy": "Política de Privacidad",
-      "terms": "Términos de Servicio"
+      "terms": "Términos de Servicio",
+      "contactTitle": "Contáctanos",
+      "description": "Riviera del Este ofrece propiedades premium en el corazón de La Romana, con impresionantes vistas y modernas comodidades para un estilo de vida de lujo confortable.",
+      "address": "Calle 40 No. B4, La Romana, República Dominicana",
+      "quickLinks": "Enlaces Rápidos",
+      "newsletter": "Boletín Informativo",
+      "newsletterDesc": "Suscríbete para recibir las últimas noticias y actualizaciones sobre nuestras propiedades.",
+      "emailPlaceholder": "Tu correo electrónico",
+      "subscribe": "Suscribirse",
+      "event": {
+        "dates": "Feria Inmobiliaria: 20-25 de Mayo, 2025",
+        "hours": "Abierto Diariamente: 10:00 AM - 6:00 PM"
+      }
     },
     "languageSwitcher": {
       "en": "Inglés",

@@ -202,15 +202,15 @@ import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@i18n/navigation";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useMediaQuery } from "@hooks/useMediaQuery";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { useScrollTo } from "@hooks/useScrollTo";
 
 export default function Navbar() {
   const t = useTranslations("common.nav");
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const scrollToSection = useScrollTo();
 
   // Disable body scroll when mobile menu is open
   useEffect(() => {
@@ -232,30 +232,11 @@ export default function Navbar() {
     width: "100%",
   };
 
-  const scrollToSection = (
+  const handleNavClick = (
     sectionId: string,
     e: React.MouseEvent<HTMLAnchorElement>
   ) => {
-    e.preventDefault();
-
-    // Obtener acceso a la instancia de Lenis
-    const lenis = (window as any).lenis;
-
-    if (lenis) {
-      // Usar Lenis para desplazarse a la sección
-      lenis.scrollTo(`#${sectionId}`, {
-        offset: 80, // Ajuste para la altura del navbar
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-    } else {
-      // Fallback por si Lenis no está disponible
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-
+    scrollToSection(sectionId, e);
     setMobileMenuOpen(false);
   };
 
@@ -287,7 +268,7 @@ export default function Navbar() {
                 <a
                   key={item}
                   href={`#${item}`}
-                  onClick={(e) => scrollToSection(item, e)}
+                  onClick={(e) => handleNavClick(item, e)}
                   className="text-1xl font-bold transition-colors text-gray-800 hover:text-primary px-1"
                 >
                   {t(item)}
