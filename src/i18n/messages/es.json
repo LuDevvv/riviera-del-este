@@ -57,6 +57,15 @@
       "dateRequired": "Fecha requerida",
       "timeRequired": "Hora requerida",
       "messageTooShort": "El mensaje debe tener al menos 10 caracteres"
+    },
+    "location": {
+      "badge": "Ubicación",
+      "title": "Encuéntranos Aquí",
+      "propertyName": "Riviera del Este",
+      "address1": "Calle 40 No. B4",
+      "address2": "La Romana, República Dominicana",
+      "latitude": "Latitud",
+      "longitude": "Longitud"
     }
   },
   "common": {
@@ -67,7 +76,8 @@
       "gallery": "Galería",
       "floorplan": "Planos",
       "contact": "Contacto",
-      "schedule": "Programar Visita"
+      "schedule": "Programar Visita",
+      "location": "Ubicación"
     },
     "footer": {
       "rights": "Todos los derechos reservados",

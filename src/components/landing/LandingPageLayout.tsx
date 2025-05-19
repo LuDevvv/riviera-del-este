@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "@components/ui/Navbar";
 import Hero from "@components/sections/Hero";
 import { useSmoothScroll } from "@hooks/useSmoothScroll";
+import Footer from "@components/sections/Footer";
 
 export default function LandingPageLayout({
   children,
@@ -17,6 +18,7 @@ export default function LandingPageLayout({
       <Navbar />
       <Hero />
       <main>{children}</main>
+      <Footer />
     </div>
   );
 }

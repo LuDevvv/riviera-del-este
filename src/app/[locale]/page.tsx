@@ -2,7 +2,7 @@ import React from "react";
 import LandingPageLayout from "@components/landing/LandingPageLayout";
 import Contact from "@components/sections/Contact";
 import Partners from "@components/sections/Partners";
-import Footer from "@components/sections/Footer";
+import Location from "@components/sections/Location";
 
 export default function Home() {
   return (
@@ -43,9 +43,9 @@ export default function Home() {
         </div>
       </section>
 
+      <Location />
       <Partners />
       <Contact />
-      <Footer />
     </LandingPageLayout>
   );
 }

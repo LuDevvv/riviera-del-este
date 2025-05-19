@@ -241,7 +241,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed w-full z-50">
+    <header className="fixed w-full z-[9999]">
       <div className="py-4" style={navbarStyle}>
         <div className="max-w-[1300px] mx-auto py-[6px] px-6">
           <div className="flex gap-2 items-center justify-between">

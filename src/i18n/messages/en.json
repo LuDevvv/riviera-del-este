@@ -57,6 +57,15 @@
       "dateRequired": "Date is required",
       "timeRequired": "Time is required",
       "messageTooShort": "Message must be at least 10 characters"
+    },
+    "location": {
+      "badge": "Location",
+      "title": "Find Us Here",
+      "propertyName": "Riviera del Este",
+      "address1": "320 40th Street B4",
+      "address2": "La Romana, Dominican Republic",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
     }
   },
   "common": {
@@ -67,7 +76,8 @@
       "gallery": "Gallery",
       "floorplan": "Floorplan",
       "contact": "Contact",
-      "schedule": "SCHEDULE A VISIT"
+      "schedule": "SCHEDULE A VISIT",
+      "location": "Location"
     },
     "footer": {
       "rights": "All rights reserved",
