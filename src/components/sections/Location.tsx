@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import type { LatLngTuple, Map, Icon as LeafletIcon } from "leaflet";
+import type { LatLngTuple, Icon as LeafletIcon } from "leaflet";
 import { MapPin } from "lucide-react";
 
 // Dynamically import Leaflet components
@@ -31,9 +31,26 @@ interface MapEventHandlerProps {
 }
 
 function MapEventHandler({ setMapActive }: MapEventHandlerProps) {
-  // Import useMap directly here, since it's a hook
-  const { useMap } = require("react-leaflet");
-  const map = useMap();
+  // Import useMap hook properly with dynamic import
+  const [map, setMap] = useState<any>(null);
+
+  useEffect(() => {
+    // Dynamic import inside the component
+    import("react-leaflet").then((mod) => {
+      // Create a temporary component to access the useMap hook
+      const MapComponent = () => {
+        const mapInstance = mod.useMap();
+        setMap(mapInstance);
+        return null;
+      };
+
+      // Render the temporary component
+      const tempDiv = document.createElement("div");
+      const ReactDOM = require("react-dom/client");
+      const root = ReactDOM.createRoot(tempDiv);
+      root.render(<MapComponent />);
+    });
+  }, []);
 
   useEffect(() => {
     if (!map) return;

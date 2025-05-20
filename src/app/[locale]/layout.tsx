@@ -80,23 +80,30 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const locale = params.locale;
+
   // Check if the locale is valid
-  if (!hasLocale(routing.locales, params.locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
-  const messages = (await import(`@i18n/messages/${params.locale}.json`))
-    .default;
+  // Using dynamic import to load messages
+  let messages;
+  try {
+    messages = (await import(`@i18n/messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 
   return (
     <html
-      lang={params.locale}
+      lang={locale}
       className={`${dmSans.variable} ${jost.variable} antialiased`}
       suppressHydrationWarning
     >
       <body className="font-sans">
         <NextIntlClientProvider
-          locale={params.locale}
+          locale={locale}
           messages={messages}
           timeZone="America/Santo_Domingo"
         >
