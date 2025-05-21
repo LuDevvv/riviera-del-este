@@ -5,6 +5,7 @@ import Navbar from "@components/ui/Navbar";
 import Hero from "@components/sections/Hero";
 import { useSmoothScroll } from "@hooks/useSmoothScroll";
 import Footer from "@components/sections/Footer";
+import WhatsAppButton from "@components/ui/WhatsAppButton";
 
 export default function LandingPageLayout({
   children,
@@ -19,6 +20,7 @@ export default function LandingPageLayout({
       <Hero />
       <main>{children}</main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

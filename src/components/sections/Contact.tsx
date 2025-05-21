@@ -78,7 +78,7 @@ export default function Contact() {
           <div className="flex flex-col items-center md:col-span-2">
             <div className="w-full max-w-[270px] mx-auto overflow-hidden rounded-lg mb-2">
               <Image
-                src="https://images.pexels.com/photos/8379357/pexels-photo-8379357.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1747842317/rufycastor_yjf0as.jpg"
                 alt="Real Estate Agent"
                 width={300}
                 height={300}
@@ -87,15 +87,13 @@ export default function Contact() {
               />
             </div>
 
-            <h3 className="text-xl font-medium text-gray-900">
-              Emily Rodriguez
-            </h3>
+            <h3 className="text-xl font-medium text-gray-900">Rufy Castor</h3>
 
             <a
-              href="tel:+15552345678"
+              href="tel:+18092995767"
               className="text-secondary hover:text-secondary-dark mt-1 hover:underline transition-colors"
             >
-              (555) 234-5678
+              (809) 299-5767
             </a>
           </div>
 

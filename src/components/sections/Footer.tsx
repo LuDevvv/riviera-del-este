@@ -6,7 +6,6 @@ import { Link } from "@i18n/navigation";
 import {
   Facebook,
   Instagram,
-  Linkedin,
   Mail,
   MapPin,
   Phone,
@@ -84,22 +83,18 @@ export default function Footer() {
             {/* Social Media Icons */}
             <div className="flex space-x-3 mt-6">
               <a
-                href="#"
+                href="https://www.facebook.com/casalina.srl"
+                target="_blank"
                 className="bg-white/10 hover:bg-secondary p-2 rounded transition-colors"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/rivieradeleste/"
+                target="_blank"
                 className="bg-white/10 hover:bg-secondary p-2 rounded transition-colors"
               >
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="bg-white/10 hover:bg-secondary p-2 rounded transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -128,10 +123,10 @@ export default function Footer() {
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-secondary flex-shrink-0" />
                 <a
-                  href="mailto:info@rivieradeleste.com"
+                  href="mailto:info@casalinainmobiliaria.com"
                   className="text-white/80 text-sm hover:text-white transition-colors"
                 >
-                  info@rivieradeleste.com
+                  info@casalinainmobiliaria.com
                 </a>
               </li>
             </ul>

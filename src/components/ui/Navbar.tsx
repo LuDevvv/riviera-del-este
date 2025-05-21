@@ -247,10 +247,11 @@ export default function Navbar() {
           <div className="flex gap-2 items-center justify-between">
             <Link href="/" className="flex items-center">
               <Image
-                src="https://madebydesignesia.com/themes/residem/images/logo-black.webp"
-                alt="Riviera del Este Logo"
-                width={140}
-                height={28}
+                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1747851573/LOGO-07_rwls9t.png"
+                // src={"/logo/casalina.png"}
+                alt="Casalina Logo"
+                width={200}
+                height={200}
                 className="h-7 w-auto object-contain"
               />
             </Link>

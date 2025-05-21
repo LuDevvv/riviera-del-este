@@ -22,6 +22,28 @@
       "walkInClosets": "Walk-in Closets",
       "swimmingPool": "Swimming Pool"
     },
+    "amenities": {
+      "badge": "Facilities",
+      "primeLocation": "Prime Location",
+      "locationDescription": "Located in a vibrant neighborhood near shops, cafés, and parks, Riviera del Este puts you right where you want to be.",
+      "items": {
+        "multiUseCourt": "Multi-purpose Court",
+        "tennisCourt": "Tennis Court",
+        "paddleCourt": "Paddle Court",
+        "swimmingPool": "Swimming Pool",
+        "bikePath": "Bike Path",
+        "outdoorGym": "Outdoor Gym",
+        "indoorGym": "Indoor Gym",
+        "linearParks": "Linear Parks",
+        "gardens": "Gardens",
+        "kidsArea": "Children's Play Area",
+        "gazebo": "Gazebo",
+        "viewpoints": "Viewpoints",
+        "shops": "Shops",
+        "church": "Church",
+        "supermarket": "Supermarket"
+      }
+    },
     "partners": {
       "title": "Our Partners",
       "ariaLabel": "Partners logo carousel"
@@ -75,6 +97,7 @@
       "rooms": "Rooms",
       "gallery": "Gallery",
       "floorplan": "Floorplan",
+      "amenities": "Amenities",
       "contact": "Contact",
       "schedule": "SCHEDULE A VISIT",
       "location": "Location"
@@ -95,6 +118,11 @@
         "dates": "Property Showcase: May 20-25, 2025",
         "hours": "Open Daily: 10:00 AM - 6:00 PM"
       }
+    },
+    "whatsapp": {
+      "buttonText": "Chat with us",
+      "ariaLabel": "Contact us via WhatsApp",
+      "defaultMessage": "Hi! I'm interested in the Riviera del Este properties. Can you provide more information?"
     },
     "languageSwitcher": {
       "en": "English",

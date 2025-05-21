@@ -3,6 +3,7 @@ import LandingPageLayout from "@components/landing/LandingPageLayout";
 import Contact from "@components/sections/Contact";
 import Partners from "@components/sections/Partners";
 import Location from "@components/sections/Location";
+import Amenities from "@components/sections/Amenities";
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
         </div>
       </section>
 
+      <Amenities />
       <Location />
       <Partners />
       <Contact />

@@ -30,6 +30,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "madebydesignesia.com",
         port: "",
         pathname: "/themes/residem/images/**",

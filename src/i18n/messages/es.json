@@ -22,6 +22,28 @@
       "walkInClosets": "Vestidores",
       "swimmingPool": "Piscina"
     },
+    "amenities": {
+      "badge": "Instalaciones",
+      "primeLocation": "Ubicación Privilegiada",
+      "locationDescription": "Ubicado en un vibrante vecindario cerca de tiendas, cafeterías y parques, Riviera del Este te coloca justo donde quieres estar.",
+      "items": {
+        "multiUseCourt": "Cancha Multiusos",
+        "tennisCourt": "Cancha de Tenis",
+        "paddleCourt": "Paddle",
+        "swimmingPool": "Piscina",
+        "bikePath": "Ciclovía",
+        "outdoorGym": "Gimnasios Exteriores",
+        "indoorGym": "Gimnasios Interiores",
+        "linearParks": "Parques Lineales",
+        "gardens": "Jardines",
+        "kidsArea": "Área de Niños",
+        "gazebo": "Gazebo",
+        "viewpoints": "Miradores",
+        "shops": "Distintos Comercios",
+        "church": "Iglesia",
+        "supermarket": "Supermercado"
+      }
+    },
     "partners": {
       "title": "Nuestros Colaboradores",
       "ariaLabel": "Carrusel de logos de colaboradores"
@@ -75,6 +97,7 @@
       "rooms": "Habitaciones",
       "gallery": "Galería",
       "floorplan": "Planos",
+      "amenities": "Amenidades",
       "contact": "Contacto",
       "schedule": "Programar Visita",
       "location": "Ubicación"
@@ -95,6 +118,11 @@
         "dates": "Feria Inmobiliaria: 20-25 de Mayo, 2025",
         "hours": "Abierto Diariamente: 10:00 AM - 6:00 PM"
       }
+    },
+    "whatsapp": {
+      "buttonText": "Chatea con nosotros",
+      "ariaLabel": "Contáctanos vía WhatsApp",
+      "defaultMessage": "¡Hola! Estoy interesado(a) en las propiedades de Riviera del Este. ¿Podrían proporcionarme más información?"
     },
     "languageSwitcher": {
       "en": "Inglés",

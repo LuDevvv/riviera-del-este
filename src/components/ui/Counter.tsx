@@ -70,6 +70,8 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
+// APARTIR DEL 6 DE JUNIO
+
 function Separator() {
   return (
     <div className="text-white flex flex-col justify-center h-14 mx-2">
