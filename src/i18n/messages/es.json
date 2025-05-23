@@ -4,7 +4,7 @@
     "hero": {
       "headline": "Elegancia y Confort",
       "subheadline": "en un Espacio Moderno",
-      "address": "Calle 40 No. B4, La Romana, República Dominicana",
+      "address": "Calle Santos Alcalá, San Pedro de Macorís",
       "cta": {
         "schedule": "Programar Visita",
         "explore": "Explorar Propiedad"
@@ -12,9 +12,9 @@
     },
     "counter": {
       "startsAbout": "Todo comienza en",
+      "days": "DÍAS",
       "hours": "HORAS",
-      "minutes": "MINUTOS",
-      "seconds": "SEGUNDOS"
+      "minutes": "MINUTOS"
     },
     "features": {
       "spaciousRooms": "Habitaciones Amplias",
@@ -84,10 +84,11 @@
       "badge": "Ubicación",
       "title": "Encuéntranos Aquí",
       "propertyName": "Riviera del Este",
-      "address1": "Calle 40 No. B4",
-      "address2": "La Romana, República Dominicana",
-      "latitude": "Latitud",
-      "longitude": "Longitud"
+      "address1": "Calle Santos Alcalá",
+      "address2": "San Pedro de Macorís 21000",
+      "reference": "Frente a Estación Total Higuamo",
+      "coordinates": "Coordenadas",
+      "openMaps": "Abrir en Maps"
     },
     "properties": {
       "badge": "Unidades Disponibles",
@@ -105,7 +106,11 @@
     "gallery": {
       "badge": "Descubre la Galería",
       "title": "Exterior e Interior",
-      "description": "Explora nuestros hermosos espacios diseñados para la vida moderna con atención a cada detalle."
+      "description": "Explora nuestros hermosos espacios diseñados para la vida moderna con atención a cada detalle.",
+      "viewAll": "Todo",
+      "exterior": "Exterior",
+      "interior": "Interior",
+      "facilities": "Instalaciones"
     },
     "overview": {
       "badge": "Sobre el Apartamento",
@@ -133,15 +138,15 @@
       "privacy": "Política de Privacidad",
       "terms": "Términos de Servicio",
       "contactTitle": "Contáctanos",
-      "description": "Riviera del Este ofrece propiedades premium en el corazón de La Romana, con impresionantes vistas y modernas comodidades para un estilo de vida de lujo confortable.",
-      "address": "Calle 40 No. B4, La Romana, República Dominicana",
+      "description": "Riviera del Este ofrece propiedades premium en San Pedro de Macorís, con impresionantes vistas y modernas comodidades para un estilo de vida de lujo confortable.",
+      "address": "Calle Santos Alcalá, San Pedro de Macorís 21000",
       "quickLinks": "Enlaces Rápidos",
       "newsletter": "Boletín Informativo",
       "newsletterDesc": "Suscríbete para recibir las últimas noticias y actualizaciones sobre nuestras propiedades.",
       "emailPlaceholder": "Tu correo electrónico",
       "subscribe": "Suscribirse",
       "event": {
-        "dates": "Feria Inmobiliaria: 20-25 de Mayo, 2025",
+        "dates": "Feria Inmobiliaria: 6-12 de Junio, 2025",
         "hours": "Abierto Diariamente: 10:00 AM - 6:00 PM"
       }
     },

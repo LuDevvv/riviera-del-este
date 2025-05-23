@@ -1,137 +1,18 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import type { LatLngTuple, Icon as LeafletIcon } from "leaflet";
-import { MapPin } from "lucide-react";
-
-// Dynamically import Leaflet components
-const MapContainer = dynamic(
-  () => import("react-leaflet").then((mod) => mod.MapContainer),
-  { ssr: false }
-);
-const TileLayer = dynamic(
-  () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false }
-);
-const Marker = dynamic(
-  () => import("react-leaflet").then((mod) => mod.Marker),
-  { ssr: false }
-);
-const ZoomControl = dynamic(
-  () => import("react-leaflet").then((mod) => mod.ZoomControl),
-  { ssr: false }
-);
-
-// Helper component to handle map interactions
-interface MapEventHandlerProps {
-  setMapActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function MapEventHandler({ setMapActive }: MapEventHandlerProps) {
-  // Import useMap hook properly with dynamic import
-  const [map, setMap] = useState<any>(null);
-
-  useEffect(() => {
-    // Dynamic import inside the component
-    import("react-leaflet").then((mod) => {
-      // Create a temporary component to access the useMap hook
-      const MapComponent = () => {
-        const mapInstance = mod.useMap();
-        setMap(mapInstance);
-        return null;
-      };
-
-      // Render the temporary component
-      const tempDiv = document.createElement("div");
-      const ReactDOM = require("react-dom/client");
-      const root = ReactDOM.createRoot(tempDiv);
-      root.render(<MapComponent />);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!map) return;
-
-    const enableMapInteraction = () => {
-      setMapActive(true);
-      map.scrollWheelZoom.enable();
-    };
-
-    const disableMapInteraction = () => {
-      setMapActive(false);
-      map.scrollWheelZoom.disable();
-    };
-
-    // Get the map container element
-    const mapContainer = map.getContainer();
-
-    // Enable map interaction on click or touch
-    map.on("click", enableMapInteraction);
-    map.on("touchstart", enableMapInteraction);
-
-    // Disable scroll zoom when mouse leaves the map area
-    mapContainer.addEventListener("mouseleave", disableMapInteraction);
-
-    return () => {
-      // Clean up all event listeners
-      if (mapContainer) {
-        mapContainer.removeEventListener("mouseleave", disableMapInteraction);
-      }
-      map.off("click", enableMapInteraction);
-      map.off("touchstart", enableMapInteraction);
-    };
-  }, [setMapActive, map]);
-
-  return null;
-}
+import { MapPin, ExternalLink } from "lucide-react";
 
 export default function Location() {
   const t = useTranslations("home.location");
-  const [mapIcon, setMapIcon] = useState<LeafletIcon | null>(null);
-  const [mapActive, setMapActive] = useState(false);
-  const mapRef = useRef<HTMLDivElement>(null);
 
-  // Riviera del Este location
-  const position: LatLngTuple = [18.428611, -68.972778];
+  // Real coordinates from Google Maps
   const buildingImage =
     "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg";
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("leaflet").then((L) => {
-        setMapIcon(
-          new L.Icon({
-            iconUrl: "/images/map-marker.svg",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-          })
-        );
-      });
-    }
-
-    // Add global scroll listener to reset map active state when scrolling the page
-    const handleGlobalScroll = () => {
-      if (mapActive && mapRef.current) {
-        // Check if we're scrolling outside the map's bounding rect
-        const mapRect = mapRef.current.getBoundingClientRect();
-        const isOutsideMapY =
-          window.scrollY < mapRect.top || window.scrollY > mapRect.bottom;
-
-        if (isOutsideMapY) {
-          setMapActive(false);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleGlobalScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleGlobalScroll);
-    };
-  }, [mapActive]);
+  const googleMapsUrl =
+    "https://www.google.com/maps/place/18%C2%B027'00.7%22N+69%C2%B019'24.0%22W/@18.4506609,-69.3237455,17.61z/data=!4m4!3m3!8m2!3d18.4501944!4d-69.3233333?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D";
 
   return (
     <section id="location" className="py-16 bg-white">
@@ -146,7 +27,7 @@ export default function Location() {
           {t("title")}
         </h2>
 
-        {/* Mobile card - shown only on small screens */}
+        {/* Mobile card */}
         <div className="md:hidden mb-4">
           <div className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-100">
             <div className="p-5">
@@ -165,26 +46,20 @@ export default function Location() {
                 </div>
               </div>
 
-              <table className="w-full text-sm border-collapse border-t border-gray-100 pt-2">
-                <tbody>
-                  <tr>
-                    <td className="py-2 text-gray-700 font-medium">
-                      {t("latitude")}
-                    </td>
-                    <td className="py-2 text-gray-800 text-right">
-                      {position[0].toFixed(6)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 text-gray-700 font-medium">
-                      {t("longitude")}
-                    </td>
-                    <td className="py-2 text-gray-800 text-right">
-                      {position[1].toFixed(6)}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                <span className="text-gray-700 font-medium text-sm">
+                  {t("coordinates")}
+                </span>
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-secondary hover:text-secondary-dark text-sm font-medium"
+                >
+                  {t("openMaps")}
+                  <ExternalLink size={14} className="ml-1" />
+                </a>
+              </div>
             </div>
             <div className="relative h-[180px] w-full">
               <Image
@@ -198,63 +73,24 @@ export default function Location() {
           </div>
         </div>
 
-        {/* Map container with rounded corners and shadow */}
-        <div
-          className="relative w-full h-[350px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg"
-          ref={mapRef}
-        >
-          {/* Map */}
-          <div className="absolute inset-0 w-full h-full z-0">
-            {typeof window !== "undefined" && (
-              <>
-                <link
-                  rel="stylesheet"
-                  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-                  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-                  crossOrigin=""
-                />
+        {/* Map container */}
+        <div className="relative w-full h-[350px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
+          {/* Embedded Google Map */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d2486.5216227206597!2d-69.32374545219207!3d18.45066089388451!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDI3JzAwLjciTiA2OcKwMTknMjQuMCJX!5e0!3m2!1sen!2sdo!4v1748022438996!5m2!1sen!2sdo"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-2xl"
+            title="Riviera del Este Location"
+          />
 
-                {/* Map interaction overlay - shown only when map is inactive */}
-                {!mapActive && (
-                  <div
-                    className="absolute inset-0 z-20 bg-black bg-opacity-5 flex items-center justify-center cursor-pointer"
-                    onClick={() => setMapActive(true)}
-                  >
-                    <div className="bg-white p-3 rounded-full shadow-md">
-                      <MapPin className="text-secondary" size={24} />
-                    </div>
-                    <span className="sr-only">Click to activate map</span>
-                  </div>
-                )}
-
-                {mapIcon ? (
-                  <MapContainer
-                    center={position}
-                    zoom={16}
-                    style={{ height: "100%", width: "100%" }}
-                    scrollWheelZoom={false}
-                    attributionControl={false}
-                    zoomControl={false}
-                    className="rounded-2xl"
-                  >
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    <Marker position={position} icon={mapIcon} />
-                    <ZoomControl position="bottomright" />
-                    <MapEventHandler setMapActive={setMapActive} />
-                  </MapContainer>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* Desktop unified card with image - hidden on mobile */}
-          <div className="hidden md:block absolute top-10 left-10 w-[350px] z-10">
+          {/* Desktop info card overlay */}
+          <div className="hidden md:block absolute top-6 left-6 w-[350px] z-10">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              {/* Card content */}
               <div className="p-5">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {t("propertyName")}
@@ -268,33 +104,29 @@ export default function Location() {
                   <div>
                     <p className="text-gray-800 text-sm">{t("address1")}</p>
                     <p className="text-gray-800 text-sm">{t("address2")}</p>
+                    <p className="text-gray-600 text-xs mt-1">
+                      {t("reference")}
+                    </p>
                   </div>
                 </div>
 
-                <table className="w-full text-sm border-collapse border-t border-gray-100 pt-3">
-                  <tbody>
-                    <tr>
-                      <td className="py-2 text-gray-700 font-medium">
-                        {t("latitude")}
-                      </td>
-                      <td className="py-2 text-gray-800 text-right">
-                        {position[0].toFixed(6)}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 text-gray-700 font-medium">
-                        {t("longitude")}
-                      </td>
-                      <td className="py-2 text-gray-800 text-right">
-                        {position[1].toFixed(6)}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                  <span className="text-gray-700 font-medium text-sm">
+                    {t("coordinates")}
+                  </span>
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-secondary hover:text-secondary-dark text-sm font-medium transition-colors"
+                  >
+                    {t("openMaps")}
+                    <ExternalLink size={14} className="ml-1" />
+                  </a>
+                </div>
               </div>
 
-              {/* Image directly attached to the card */}
-              <div className="relative h-[180px] w-full">
+              <div className="relative h-[140px] w-full">
                 <Image
                   src={buildingImage}
                   alt="Riviera del Este"

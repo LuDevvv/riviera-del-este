@@ -13,7 +13,7 @@ export default function Hero() {
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
       <VideoBackground
-        src="https://videos.pexels.com/video-files/8783214/8783214-hd_1920_1080_30fps.mp4"
+        src="https://videos.pexels.com/video-files/29270951/12626267_2560_1440_25fps.mp4"
         poster="/images/hero-poster.jpg"
         title={t("headline")}
       />

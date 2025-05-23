@@ -20,3 +20,27 @@ module.exports = {
     },
   },
 };
+
+// /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//   plugins: {
+//     "@tailwindcss/postcss": {},
+//   },
+//   theme: {
+//     extend: {
+//       colors: {
+//         primary: {
+//           DEFAULT: "#0D71B9",
+//           light: "#82BCE1",
+//           dark: "#426375",
+//         },
+//         secondary: {
+//           DEFAULT: "#FCA205",
+//           light: "#FFD966",
+//           dark: "#E6920A",
+//         },
+//         neutral: "#F3F9F3",
+//       },
+//     },
+//   },
+// };

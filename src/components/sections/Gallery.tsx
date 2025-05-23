@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
+import { ImageSlider } from "@components/ui/ImageSlider";
 
 export default function Gallery() {
   const t = useTranslations("home.gallery");
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const galleryItems = [
     {
@@ -57,7 +59,11 @@ export default function Gallery() {
     },
   ];
 
-  const categories = ["exterior", "interior", "facilities"];
+  // Filter items based on active filter
+  const filteredItems =
+    activeFilter === "all"
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeFilter);
 
   return (
     <section id="gallery" className="py-20 bg-white">
@@ -72,15 +78,63 @@ export default function Gallery() {
           {t("title")}
         </h2>
 
-        <p className="text-center text-gray-500 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-500 mb-8 max-w-2xl mx-auto">
           {t("description")}
         </p>
 
-        {/* <ImageSlider
-          items={galleryItems}
-          slidesToShow={3}
-          className="max-w-6xl mx-auto"
-        /> */}
+        {/* Filter Tabs */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex bg-white rounded-lg p-1 gap-1 shadow-md">
+            <button
+              onClick={() => setActiveFilter("all")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                activeFilter === "all"
+                  ? "bg-secondary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              {t("viewAll")}
+            </button>
+            <button
+              onClick={() => setActiveFilter("exterior")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                activeFilter === "exterior"
+                  ? "bg-secondary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              {t("exterior")}
+            </button>
+            <button
+              onClick={() => setActiveFilter("interior")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                activeFilter === "interior"
+                  ? "bg-secondary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              {t("interior")}
+            </button>
+            <button
+              onClick={() => setActiveFilter("facilities")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                activeFilter === "facilities"
+                  ? "bg-secondary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              {t("facilities")}
+            </button>
+          </div>
+        </div>
+
+        {/* Image Slider */}
+        <ImageSlider
+          items={filteredItems}
+          showGradients={false}
+          backgroundColor="bg-white"
+          autoPlay={true}
+        />
       </div>
     </section>
   );
