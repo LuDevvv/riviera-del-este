@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import PropertyCard from "@components/ui/PropertyCard";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Properties() {
   const t = useTranslations("home.properties");
-  const locale = useLocale();
   const [activeTab, setActiveTab] = useState<"all" | "residences" | "premium">(
     "all"
   );
@@ -68,7 +67,7 @@ export default function Properties() {
       : properties.filter((property) => property.type === activeTab);
 
   return (
-    <section id="rooms" className="py-16 bg-gray-50">
+    <section id="rooms" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
         <div className="flex justify-center mb-4">
           <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">

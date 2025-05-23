@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
-import ImageSlider from "@components/ui/ImageSlider";
 
 export default function Gallery() {
   const t = useTranslations("home.gallery");
@@ -77,7 +76,11 @@ export default function Gallery() {
           {t("description")}
         </p>
 
-        <ImageSlider items={galleryItems} className="max-w-6xl mx-auto" />
+        {/* <ImageSlider
+          items={galleryItems}
+          slidesToShow={3}
+          className="max-w-6xl mx-auto"
+        /> */}
       </div>
     </section>
   );

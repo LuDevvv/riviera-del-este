@@ -1,80 +1,49 @@
-"use client";
-
-import React from "react";
 import { useTranslations } from "next-intl";
-import ImageSlider from "@components/ui/ImageSlider";
+import { ImageSlider } from "@components/ui/ImageSlider";
 
 export default function Overview() {
   const t = useTranslations("home.overview");
 
   const overviewItems = [
     {
-      id: "living-room",
-      image:
-        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
-      title: "Modern Living, Thoughtfully Designed",
-    },
-    {
-      id: "bedroom-space",
+      id: "master-bedroom",
       image:
         "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
-      title: "Comfortable & Spacious Bedrooms",
+      title: "Master Bedroom",
     },
     {
-      id: "kitchen-area",
+      id: "bathroom",
       image:
         "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg",
-      title: "Fully Equipped Modern Kitchen",
+      title: "Bathroom",
     },
     {
-      id: "outdoor-space",
-      image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
-      title: "Beautiful Outdoor Spaces",
+      id: "kitchen",
+      image:
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+      title: "Kitchen",
     },
   ];
 
   return (
-    <section id="overview" className="py-20 bg-primary text-white">
-      <div className="container mx-auto px-4 max-w-[1300px]">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div>
-            <div className="inline-block bg-primary-light bg-opacity-20 px-4 py-1 rounded text-sm font-medium mb-6">
-              {t("badge")}
-            </div>
+    <section id="overview" className="bg-primary text-white pt-9 md:pt-20">
+      <div className="container mx-auto">
+        <div className="mx-auto max-w-[1300px] px-4 flex flex-col space-y-6 mb-9">
+          <button className="self-center sm:self-start bg-white/10 backdrop-blur-sm text-sm uppercase font-medium px-4 py-1.5 rounded">
+            {t("badge")}
+          </button>
 
-            <h2 className="text-3xl md:text-4xl font-display font-medium mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 items-start">
+            <h1 className="text-3xl sm:text-5xl font-light leading-tight text-center sm:text-left">
               {t("title")}
-            </h2>
-
-            <p className="text-white/90 text-lg mb-8 leading-relaxed">
+            </h1>
+            <p className="text-base sm:text-lg text-white/80 text-center sm:text-left">
               {t("description")}
             </p>
-
-            {/* Features List */}
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-secondary rounded-full mr-4"></div>
-                <span className="text-white/90">{t("feature1")}</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-secondary rounded-full mr-4"></div>
-                <span className="text-white/90">{t("feature2")}</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-secondary rounded-full mr-4"></div>
-                <span className="text-white/90">{t("feature3")}</span>
-              </div>
-            </div>
           </div>
-
-          {/* Right Slider */}
-          <ImageSlider
-            items={overviewItems}
-            autoPlay={true}
-            className="rounded-lg overflow-hidden max-w-4xl mx-auto"
-          />
         </div>
+
+        <ImageSlider items={overviewItems} autoPlay={true} />
       </div>
     </section>
   );

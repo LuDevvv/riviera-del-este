@@ -247,7 +247,7 @@ export default function Navbar() {
           <div className="flex gap-2 items-center justify-between">
             <Link href="/" className="flex items-center">
               <Image
-                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1747851573/LOGO-07_rwls9t.png"
+                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1747850957/LOGO-09_4_11zon_joutfi.webp"
                 // src={"/logo/casalina.png"}
                 alt="Casalina Logo"
                 width={200}

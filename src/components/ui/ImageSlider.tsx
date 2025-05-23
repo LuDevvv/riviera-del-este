@@ -1,182 +1,106 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface SliderItem {
   id: string;
   image: string;
   title?: string;
-  category?: string;
 }
 
 interface ImageSliderProps {
   items: SliderItem[];
-  categories?: string[];
   height?: string;
   autoPlay?: boolean;
-  showCategories?: boolean;
-  className?: string;
+  autoPlayInterval?: number;
 }
 
-export default function ImageSlider({
+export function ImageSlider({
   items,
-  categories = [],
-  height = "h-screen md:h-96",
+  height = "h-[400px] md:h-[500px] lg:h-[600px]",
   autoPlay = false,
-  showCategories = false,
-  className = "",
+  autoPlayInterval = 4000,
 }: ImageSliderProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [direction, setDirection] = useState(0);
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
 
-  // Filter items based on active category
-  const filteredItems =
-    activeCategory === "all"
-      ? items
-      : items.filter((item) => item.category === activeCategory);
-
-  const nextSlide = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % filteredItems.length);
+  const onSwiperInit = (swiper: any) => {
+    if (prevRef.current && nextRef.current) {
+      swiper.params.navigation.prevEl = prevRef.current;
+      swiper.params.navigation.nextEl = nextRef.current;
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
   };
 
-  const prevSlide = () => {
-    setDirection(-1);
-    setCurrentIndex(
-      (prev) => (prev - 1 + filteredItems.length) % filteredItems.length
-    );
-  };
-
-  const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    setCurrentIndex(0);
-    setDirection(0);
-  };
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-  };
+  if (!items.length) return null;
 
   return (
-    <div className={`relative w-full ${className}`}>
-      {/* Category Filters */}
-      {showCategories && categories.length > 0 && (
-        <div className="flex justify-center mb-8">
-          <div className="flex bg-white rounded-lg shadow-sm border p-1">
-            <button
-              onClick={() => handleCategoryChange("all")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                activeCategory === "all"
-                  ? "bg-secondary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              View All
-            </button>
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => handleCategoryChange(category)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all capitalize ${
-                  activeCategory === category
-                    ? "bg-secondary text-white"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+    <div className={`relative w-full overflow-hidden bg-primary ${height}`}>
+      {/* Gradientes laterales */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-primary" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-primary" />
 
-      {/* Main Slider */}
-      <div className={`relative ${height} overflow-hidden bg-gray-100 w-full`}>
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={`${activeCategory}-${currentIndex}`}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-            }}
-            className="absolute inset-0 w-full h-full"
-          >
-            {filteredItems[currentIndex] && (
-              <>
-                <Image
-                  src={filteredItems[currentIndex].image}
-                  alt={filteredItems[currentIndex].title || "Slide image"}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  priority
-                />
+      {/* Flechas */}
+      <button
+        ref={prevRef}
+        aria-label="Anterior"
+        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 bg-secondary hover:bg-secondary/90 text-white rounded-full p-3 shadow-lg transition"
+      >
+        <ChevronLeft size={24} />
+      </button>
+      <button
+        ref={nextRef}
+        aria-label="Siguiente"
+        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 bg-secondary hover:bg-secondary/90 text-white rounded-full p-3 shadow-lg transition"
+      >
+        <ChevronRight size={24} />
+      </button>
 
-                {/* Optional title overlay with gradient */}
-                {filteredItems[currentIndex].title && (
-                  <>
-                    {/* Gradient overlay for title readability */}
-                    <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/50 to-transparent"></div>
-
-                    <div className="absolute top-6 left-6 z-10">
-                      <h3 className="text-white text-lg md:text-xl lg:text-2xl font-medium">
-                        {filteredItems[currentIndex].title}
-                      </h3>
-                    </div>
-                  </>
-                )}
-              </>
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        onInit={onSwiperInit}
+        loop
+        centeredSlides
+        autoplay={autoPlay ? { delay: autoPlayInterval } : false}
+        spaceBetween={16}
+        slidesPerView={1} // fallback para móvil
+        breakpoints={{
+          640: {
+            // tablet
+            slidesPerView: 1.2, // 20% de peek
+            spaceBetween: 20,
+          },
+          1024: {
+            // desktop
+            slidesPerView: 1.5, // 50% central, 25% a cada lado
+            spaceBetween: 32,
+          },
+        }}
+        className="h-full"
+      >
+        {items.map((item) => (
+          <SwiperSlide key={item.id} className="relative h-full">
+            <img
+              src={item.image}
+              alt={item.title || ""}
+              className="w-full h-full object-cover rounded-lg shadow-lg"
+            />
+            {item.title && (
+              <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm px-3 py-1 rounded drop-shadow-lg">
+                <h3 className="text-white text-lg md:text-xl lg:text-2xl font-medium">
+                  {item.title}
+                </h3>
+              </div>
             )}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation Arrows */}
-        {filteredItems.length > 1 && (
-          <>
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-secondary hover:bg-secondary-dark text-white rounded-full p-2.5 transition-all shadow-lg z-10"
-              aria-label="Previous image"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-secondary hover:bg-secondary-dark text-white rounded-full p-2.5 transition-all shadow-lg z-10"
-              aria-label="Next image"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </>
-        )}
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 }

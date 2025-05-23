@@ -31,7 +31,7 @@ export default function Amenities() {
   ];
 
   return (
-    <section className="py-16 bg-[#1a413a] text-white">
+    <section className="py-16 bg-primary text-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
         <div className="flex flex-col md:flex-row items-start justify-between">
           <div className="flex flex-col items-start md:pr-4">
