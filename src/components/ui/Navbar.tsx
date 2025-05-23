@@ -247,12 +247,11 @@ export default function Navbar() {
           <div className="flex gap-2 items-center justify-between">
             <Link href="/" className="flex items-center">
               <Image
-                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1747850957/LOGO-09_4_11zon_joutfi.webp"
-                // src={"/logo/casalina.png"}
+                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1748035946/Artboard_2_opvcvu.png"
                 alt="Casalina Logo"
-                width={200}
-                height={200}
-                className="h-7 w-auto object-contain"
+                width={160}
+                height={64}
+                className="object-contain"
               />
             </Link>
 

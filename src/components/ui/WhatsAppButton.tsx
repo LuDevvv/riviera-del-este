@@ -9,9 +9,8 @@ export default function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // 18495230023
   // Phone number without any special characters
-  const phoneNumber = "18095551234";
+  const phoneNumber = "18092995767";
 
   // Pre-filled message (URL encoded)
   const message = encodeURIComponent(t("defaultMessage"));
