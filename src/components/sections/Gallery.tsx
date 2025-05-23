@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ImageSlider } from "@components/ui/ImageSlider";
-
+// AGREGAR SCROOLL AL TAB PARA QUE NO SE ROMPA
 export default function Gallery() {
   const t = useTranslations("home.gallery");
   const [activeFilter, setActiveFilter] = useState("all");

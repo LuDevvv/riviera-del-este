@@ -204,7 +204,7 @@ import { Link } from "@i18n/navigation";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, CalendarFold } from "lucide-react";
 import { useScrollTo } from "@hooks/useScrollTo";
 
 export default function Navbar() {
@@ -257,14 +257,7 @@ export default function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center justify-center space-x-2 lg:space-x-6 flex-1">
-              {[
-                "home",
-                "overview",
-                "rooms",
-                "gallery",
-                "floorplan",
-                "contact",
-              ].map((item) => (
+              {["models", "gallery", "location", "contact"].map((item) => (
                 <a
                   key={item}
                   href={`#${item}`}
@@ -293,7 +286,9 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Schedule button */}
-            <button className="hidden md:flex bg-secondary hover:bg-secondary-dark text-white rounded px-4 py-2 text-sm font-medium transition-colors ml-4">
+            <button className="hidden md:flex items-center justify-center bg-secondary hover:bg-secondary-dark text-white rounded px-4 py-2 text-sm font-medium transition-colors ml-4 gap-1">
+              <CalendarFold className="w-4 h-4" />
+
               {t("schedule")}
             </button>
           </div>
@@ -311,33 +306,28 @@ export default function Navbar() {
           >
             <div className="overflow-y-auto h-full">
               <nav>
-                {[
-                  "home",
-                  "overview",
-                  "rooms",
-                  "gallery",
-                  "floorplan",
-                  "contact",
-                ].map((item, index) => (
-                  <React.Fragment key={item}>
-                    <div
-                      className="flex items-center justify-between px-4 py-4 cursor-pointer"
-                      onClick={(e) => scrollToSection(item, e as any)}
-                    >
-                      <a
-                        href={`#${item}`}
-                        className="text-base font-medium text-gray-800"
+                {["models", "gallery", "location", "contact"].map(
+                  (item, index) => (
+                    <React.Fragment key={item}>
+                      <div
+                        className="flex items-center justify-between px-4 py-4 cursor-pointer"
+                        onClick={(e) => scrollToSection(item, e as any)}
                       >
-                        {t(item)}
-                      </a>
+                        <a
+                          href={`#${item}`}
+                          className="text-base font-medium text-gray-800"
+                        >
+                          {t(item)}
+                        </a>
 
-                      {item === "home" && <ChevronDown size={20} />}
-                    </div>
-                    {index < 5 && (
-                      <div className="h-px bg-gray-200 w-full"></div>
-                    )}
-                  </React.Fragment>
-                ))}
+                        {item === "home" && <ChevronDown size={20} />}
+                      </div>
+                      {index < 5 && (
+                        <div className="h-px bg-gray-200 w-full"></div>
+                      )}
+                    </React.Fragment>
+                  )
+                )}
 
                 {/* Schedule button */}
                 <div className="px-4 py-6">

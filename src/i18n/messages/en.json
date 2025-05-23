@@ -4,7 +4,6 @@
     "hero": {
       "headline": "Elegant and Comfort",
       "subheadline": "in a Modern Space",
-      "address": "Street Santos Alcalá, San Pedro de Macorís",
       "cta": {
         "schedule": "SCHEDULE A VISIT",
         "explore": "Explore Property"
@@ -91,17 +90,33 @@
       "openMaps": "Open in Maps"
     },
     "properties": {
-      "badge": "Available Units",
-      "title": "Find Your Ideal Space",
-      "description": "Discover our selection of exclusive apartment units with different layouts to suit your needs.",
-      "contactAgent": "Contact Agent",
-      "allProperties": "All",
-      "residences": "Residences",
+      "badge": "Unidades Disponibles",
+      "title": "Encuentra Tu Espacio Ideal",
+      "description": "Descubre nuestra selección de apartamentos exclusivos con diferentes distribuciones para adaptarse a tus necesidades.",
+      "contactAgent": "Contactar Agente",
+      "allProperties": "Todas",
+      "residences": "Residencias",
       "premium": "Premium",
-      "bedrooms": "Bedrooms",
+      "bedrooms": "Habitaciones",
+      "bathrooms": "Baños",
       "patio": "Patio",
-      "available": "Available",
-      "penthouse": "Penthouse"
+      "rooftop": "Azotea",
+      "walkInCloset": "Vestidor",
+      "available": "Disponible",
+      "penthouse": "Penthouse",
+      "parking": "Parqueos",
+      "floor": "Piso",
+      "firstFloor": "Primer Piso",
+      "paymentPlan": "Plan de Pago",
+      "reservation": "Separación",
+      "delivery": "Contra Entrega",
+      "typeA": "Tipo A",
+      "typeB": "Tipo B",
+      "typeC": "Tipo C",
+      "typeD": "Tipo D",
+      "typeE": "Tipo E",
+      "viewMore": "Ver Más",
+      "more": "más"
     },
     "gallery": {
       "badge": "Discover Gallery",
@@ -123,15 +138,11 @@
   },
   "common": {
     "nav": {
-      "home": "Home",
-      "overview": "Overview",
-      "rooms": "Rooms",
+      "models": "Models",
       "gallery": "Gallery",
-      "floorplan": "Floorplan",
-      "amenities": "Amenities",
+      "location": "Location",
       "contact": "Contact",
-      "schedule": "SCHEDULE A VISIT",
-      "location": "Location"
+      "schedule": "SCHEDULE A VISIT"
     },
     "footer": {
       "rights": "All rights reserved",

@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, ContactData } from "@lib/types/contact";
 import { Calendar, Clock, User, Mail, MessageSquare } from "lucide-react";
 
+// LIMITAR SELECT DE LA FECHA COON LOS DIAS DEL EVENTO DEL 6 AL 8
+
 export default function Contact() {
   const t = useTranslations("home.contact");
   const [isSubmitting, setIsSubmitting] = useState(false);

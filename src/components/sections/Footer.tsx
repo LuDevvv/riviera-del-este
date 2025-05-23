@@ -22,7 +22,7 @@ export default function Footer() {
   const scrollToSection = useScrollTo();
 
   // Navigation items for quick links
-  const navItems = ["home", "overview", "rooms", "gallery", "contact"];
+  const navItems = ["models", "gallery", "location", "contact"];
 
   const handleNavClick = (
     item: string,
@@ -69,11 +69,10 @@ export default function Footer() {
           <div className="max-w-sm">
             <div className="mb-4">
               <Image
-                src="https://madebydesignesia.com/themes/residem/images/logo.webp"
+                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1748035946/Artboard_2_opvcvu.png"
                 alt="Riviera del Este"
-                width={150}
-                height={40}
-                className="h-10 w-auto"
+                width={200}
+                height={200}
               />
             </div>
             <p className="text-white/80 text-sm mb-5">
@@ -114,10 +113,10 @@ export default function Footer() {
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-secondary flex-shrink-0" />
                 <a
-                  href="tel:+18095551234"
+                  href="tel:+18092995767"
                   className="text-white/80 text-sm hover:text-white transition-colors"
                 >
-                  +1 (809) 555-1234
+                  +1 (809) 299-5767
                 </a>
               </li>
               <li className="flex items-center">

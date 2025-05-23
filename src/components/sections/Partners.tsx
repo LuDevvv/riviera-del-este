@@ -6,24 +6,19 @@ import Image from "next/image";
 
 const PARTNERS = [
   {
-    id: "bullseye",
-    name: "Bullseye",
-    logo: "/images/partners/bullseye.svg",
+    id: "novaforza",
+    name: "NovaForza",
+    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/v1748037716/123_lps2yb.png",
   },
   {
-    id: "climb-the-mountain",
-    name: "Climb The Mountain",
-    logo: "/images/partners/climb-the-mountain.svg",
+    id: "casalina",
+    name: "Casalina",
+    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/v1748037716/LOGO-12_zzdft1.png",
   },
   {
-    id: "golden",
-    name: "Golden",
-    logo: "/images/partners/golden.svg",
-  },
-  {
-    id: "mighty",
-    name: "Mighty Furnitures",
-    logo: "/images/partners/mighty.svg",
+    id: "riviera-del-este",
+    name: "Riviera Del Este",
+    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/v1748037715/gria_hlzos8.png",
   },
 ];
 

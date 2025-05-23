@@ -2,11 +2,10 @@
   "home": {
     "title": "Riviera del Este - Residencias de Lujo",
     "hero": {
-      "headline": "Elegancia y Confort",
-      "subheadline": "en un Espacio Moderno",
-      "address": "Calle Santos Alcalá, San Pedro de Macorís",
+      "headline": "Descubre tu nuevo hogar frente al mar",
+      "subheadline": "El lujo a tu alcance",
       "cta": {
-        "schedule": "Programar Visita",
+        "schedule": "Agendar Cita",
         "explore": "Explorar Propiedad"
       }
     },
@@ -23,9 +22,9 @@
       "swimmingPool": "Piscina"
     },
     "amenities": {
-      "badge": "Instalaciones",
+      "badge": "Amenidades",
       "primeLocation": "Ubicación Privilegiada",
-      "locationDescription": "Ubicado en un vibrante vecindario cerca de tiendas, cafeterías y parques, Riviera del Este te coloca justo donde quieres estar.",
+      "locationDescription": "Ubicado cerca de tiendas, cafeterías y parques, Riviera del Este te coloca justo donde quieres estar.",
       "items": {
         "multiUseCourt": "Cancha Multiusos",
         "tennisCourt": "Cancha de Tenis",
@@ -53,7 +52,7 @@
       "description": "Ubicado en la exclusiva zona de La Romana, Riviera del Este ofrece residencias de lujo con impresionantes vistas al océano. Nuestro proyecto residencial combina diseño moderno con el confort caribeño."
     },
     "units": {
-      "title": "Unidades Disponibles",
+      "title": "Modelos Disponibles",
       "subtitle": "Encuentra tu espacio ideal",
       "onebed": "1 Habitación",
       "twobed": "2 Habitaciones",
@@ -91,7 +90,7 @@
       "openMaps": "Abrir en Maps"
     },
     "properties": {
-      "badge": "Unidades Disponibles",
+      "badge": "Modelos Disponibles",
       "title": "Encuentra Tu Espacio Ideal",
       "description": "Descubre nuestra selección de apartamentos exclusivos con diferentes distribuciones para adaptarse a tus necesidades.",
       "contactAgent": "Contactar Agente",
@@ -104,18 +103,18 @@
       "penthouse": "Penthouse"
     },
     "gallery": {
-      "badge": "Descubre la Galería",
-      "title": "Exterior e Interior",
-      "description": "Explora nuestros hermosos espacios diseñados para la vida moderna con atención a cada detalle.",
+      "badge": "Galería",
+      "title": "Descubre cada rincón",
+      "description": "Explora nuestros hermosos espacios diseñados para la vida moderna.",
       "viewAll": "Todo",
       "exterior": "Exterior",
       "interior": "Interior",
-      "facilities": "Instalaciones"
+      "facilities": "Amenidades"
     },
     "overview": {
       "badge": "Sobre el Apartamento",
       "title": "Vida Moderna, Diseñada Cuidadosamente",
-      "description": "Perfecto para profesionales, parejas o familias pequeñas, este apartamento combina comodidad, conveniencia y un estilo contemporáneo limpio.",
+      "description": "Perfecto para familias, parejas y profesionales este apartamento combina comodidad, conveniencia y un estilo moderno.",
       "feature1": "Acabados premium y electrodomésticos modernos",
       "feature2": "Espacios de vida de concepto abierto",
       "feature3": "Soluciones de almacenamiento inteligentes"
@@ -123,15 +122,11 @@
   },
   "common": {
     "nav": {
-      "home": "Inicio",
-      "overview": "Información",
-      "rooms": "Habitaciones",
+      "models": "Modelos",
       "gallery": "Galería",
-      "floorplan": "Planos",
-      "amenities": "Amenidades",
       "contact": "Contacto",
-      "schedule": "Programar Visita",
-      "location": "Ubicación"
+      "location": "Ubicación",
+      "schedule": "Agendar Cita"
     },
     "footer": {
       "rights": "Todos los derechos reservados",
@@ -146,7 +141,7 @@
       "emailPlaceholder": "Tu correo electrónico",
       "subscribe": "Suscribirse",
       "event": {
-        "dates": "Feria Inmobiliaria: 6-12 de Junio, 2025",
+        "dates": "Feria Inmobiliaria Del 6 al 8 de Junio, 2025",
         "hours": "Abierto Diariamente: 10:00 AM - 6:00 PM"
       }
     },
