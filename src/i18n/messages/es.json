@@ -88,6 +88,32 @@
       "address2": "La Romana, República Dominicana",
       "latitude": "Latitud",
       "longitude": "Longitud"
+    },
+    "properties": {
+      "badge": "Unidades Disponibles",
+      "title": "Encuentra Tu Espacio Ideal",
+      "description": "Descubre nuestra selección de apartamentos exclusivos con diferentes distribuciones para adaptarse a tus necesidades.",
+      "contactAgent": "Contactar Agente",
+      "allProperties": "Todas",
+      "residences": "Residencias",
+      "premium": "Premium",
+      "bedrooms": "Habitaciones",
+      "patio": "Patio",
+      "available": "Disponible",
+      "penthouse": "Penthouse"
+    },
+    "gallery": {
+      "badge": "Descubre la Galería",
+      "title": "Exterior e Interior",
+      "description": "Explora nuestros hermosos espacios diseñados para la vida moderna con atención a cada detalle."
+    },
+    "overview": {
+      "badge": "Sobre el Apartamento",
+      "title": "Vida Moderna, Diseñada Cuidadosamente",
+      "description": "Perfecto para profesionales, parejas o familias pequeñas, este apartamento combina comodidad, conveniencia y un estilo contemporáneo limpio.",
+      "feature1": "Acabados premium y electrodomésticos modernos",
+      "feature2": "Espacios de vida de concepto abierto",
+      "feature3": "Soluciones de almacenamiento inteligentes"
     }
   },
   "common": {
