@@ -5,9 +5,19 @@ import FeaturesBar from "../ui/FeaturesBar";
 import CounterSection from "../ui/Counter";
 import VideoBackground from "../ui/VideoBackground";
 import { CalendarFold } from "lucide-react";
+import { useScrollTo } from "@hooks/useScrollTo";
 
 export default function Hero() {
   const t = useTranslations("home.hero");
+  const scrollToSection = useScrollTo();
+
+  const handleGoClick = (
+    sectionId: string,
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    scrollToSection(sectionId, e);
+  };
+
   return (
     <section
       id="home"
@@ -32,6 +42,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
+                onClick={(e) => handleGoClick("contact", e)}
                 className="bg-secondary hover:bg-secondary-dark text-white px-5 py-2 rounded font-medium transition flex items-center justify-center
 gap-1"
               >
@@ -40,7 +51,8 @@ gap-1"
                 {t("cta.schedule")}
               </a>
               <a
-                href="#overview"
+                href="#models"
+                onClick={(e) => handleGoClick("models", e)}
                 className="bg-transparent hover:bg-white/10 text-white border border-white px-5 py-2 rounded font-medium transition"
               >
                 {t("cta.explore")}

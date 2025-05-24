@@ -146,7 +146,6 @@
       }
     },
     "whatsapp": {
-      "buttonText": "Chatea con nosotros",
       "ariaLabel": "Contáctanos vía WhatsApp",
       "defaultMessage": "¡Hola! Estoy interesado(a) en las propiedades de Riviera del Este. ¿Podrían proporcionarme más información?"
     },

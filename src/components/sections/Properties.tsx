@@ -67,7 +67,7 @@ export default function Properties() {
       : properties.filter((property) => property.type === activeTab);
 
   return (
-    <section id="rooms" className="py-16 bg-white">
+    <section id="models" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
         <div className="flex justify-center mb-4">
           <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">

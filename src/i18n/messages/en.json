@@ -2,11 +2,11 @@
   "home": {
     "title": "Riviera del Este - Luxury Residences",
     "hero": {
-      "headline": "Elegant and Comfort",
-      "subheadline": "in a Modern Space",
+      "headline": "Discover Your New Seafront Home",
+      "subheadline": "Luxury Within Your Reach",
       "cta": {
         "schedule": "SCHEDULE A VISIT",
-        "explore": "Explore Property"
+        "explore": "EXPLORE PROPERTY"
       }
     },
     "counter": {
@@ -22,9 +22,9 @@
       "swimmingPool": "Swimming Pool"
     },
     "amenities": {
-      "badge": "Facilities",
+      "badge": "Amenities",
       "primeLocation": "Prime Location",
-      "locationDescription": "Located in a vibrant neighborhood near shops, cafés, and parks, Riviera del Este puts you right where you want to be.",
+      "locationDescription": "Located near shops, cafés, and parks, Riviera del Este places you right where you want to be.",
       "items": {
         "multiUseCourt": "Multi-purpose Court",
         "tennisCourt": "Tennis Court",
@@ -85,52 +85,36 @@
       "propertyName": "Riviera del Este",
       "address1": "Calle Santos Alcalá",
       "address2": "San Pedro de Macorís 21000",
-      "reference": "Frente a Estación Total Higuamo",
+      "reference": "In front of Total Higuamo Station",
       "coordinates": "Coordinates",
       "openMaps": "Open in Maps"
     },
     "properties": {
-      "badge": "Unidades Disponibles",
-      "title": "Encuentra Tu Espacio Ideal",
-      "description": "Descubre nuestra selección de apartamentos exclusivos con diferentes distribuciones para adaptarse a tus necesidades.",
-      "contactAgent": "Contactar Agente",
-      "allProperties": "Todas",
-      "residences": "Residencias",
+      "badge": "Available Units",
+      "title": "Find Your Ideal Space",
+      "description": "Discover our selection of exclusive apartments with various layouts to suit your needs.",
+      "contactAgent": "Contact Agent",
+      "allProperties": "All",
+      "residences": "Residences",
       "premium": "Premium",
-      "bedrooms": "Habitaciones",
-      "bathrooms": "Baños",
+      "bedrooms": "Bedrooms",
       "patio": "Patio",
-      "rooftop": "Azotea",
-      "walkInCloset": "Vestidor",
-      "available": "Disponible",
-      "penthouse": "Penthouse",
-      "parking": "Parqueos",
-      "floor": "Piso",
-      "firstFloor": "Primer Piso",
-      "paymentPlan": "Plan de Pago",
-      "reservation": "Separación",
-      "delivery": "Contra Entrega",
-      "typeA": "Tipo A",
-      "typeB": "Tipo B",
-      "typeC": "Tipo C",
-      "typeD": "Tipo D",
-      "typeE": "Tipo E",
-      "viewMore": "Ver Más",
-      "more": "más"
+      "available": "Available",
+      "penthouse": "Penthouse"
     },
     "gallery": {
-      "badge": "Discover Gallery",
-      "title": "Exterior & Interior",
-      "description": "Explore our beautiful spaces designed for modern living with attention to every detail.",
+      "badge": "Gallery",
+      "title": "Discover Every Corner",
+      "description": "Explore our beautiful spaces designed for modern living.",
       "viewAll": "All",
       "exterior": "Exterior",
       "interior": "Interior",
-      "facilities": "Facilities"
+      "facilities": "Amenities"
     },
     "overview": {
       "badge": "About the Apartment",
       "title": "Modern Living, Thoughtfully Designed",
-      "description": "Perfect for professionals, couples, or small families, this apartment combines comfort, convenience, and a clean contemporary style.",
+      "description": "Perfect for families, couples, and professionals, this apartment combines comfort, convenience, and a clean contemporary style.",
       "feature1": "Premium finishes and modern appliances",
       "feature2": "Open-concept living spaces",
       "feature3": "Thoughtful storage solutions"
@@ -140,8 +124,8 @@
     "nav": {
       "models": "Models",
       "gallery": "Gallery",
-      "location": "Location",
       "contact": "Contact",
+      "location": "Location",
       "schedule": "SCHEDULE A VISIT"
     },
     "footer": {
@@ -157,14 +141,13 @@
       "emailPlaceholder": "Your email",
       "subscribe": "Subscribe",
       "event": {
-        "dates": "Property Showcase: June 6-12, 2025",
+        "dates": "Property Showcase: June 6-8, 2025",
         "hours": "Open Daily: 10:00 AM - 6:00 PM"
       }
     },
     "whatsapp": {
-      "buttonText": "Chat with us",
       "ariaLabel": "Contact us via WhatsApp",
-      "defaultMessage": "Hi! I'm interested in the Riviera del Este properties. Can you provide more information?"
+      "defaultMessage": "Hi! I'm interested in Riviera del Este properties. Could you provide more information?"
     },
     "languageSwitcher": {
       "en": "English",

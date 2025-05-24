@@ -69,7 +69,7 @@ export default function Footer() {
           <div className="max-w-sm">
             <div className="mb-4">
               <Image
-                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1748035946/Artboard_2_opvcvu.png"
+                src="https://res.cloudinary.com/dcuapqoii/image/upload/v1748058821/blanco_u184gq.png"
                 alt="Riviera del Este"
                 width={200}
                 height={200}
@@ -89,7 +89,7 @@ export default function Footer() {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://www.instagram.com/rivieradeleste/"
+                href="https://www.instagram.com/casalinasrl/"
                 target="_blank"
                 className="bg-white/10 hover:bg-secondary p-2 rounded transition-colors"
               >
