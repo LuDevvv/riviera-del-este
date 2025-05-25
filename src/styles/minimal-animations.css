@@ -1,0 +1,47 @@
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+}
+
+.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optimización: usar transform3d para hardware acceleration */
+.will-change-auto {
+  will-change: auto;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reducir animaciones en dispositivos con batería baja */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-up {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Pausar animaciones cuando no son visibles */
+.animation-paused {
+  animation-play-state: paused;
+}

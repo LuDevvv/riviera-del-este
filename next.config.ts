@@ -2,32 +2,71 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  // Optimización de rendimiento
+  // Core performance
   reactStrictMode: true,
+  swcMinify: true,
 
-  // Temporarily ignore type errors during build
+  // Experimental optimizations - solo las probadas
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
+
+  // Build config
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  // Also ignore ESLint errors during build
   eslint: {
     ignoreDuringBuilds: true,
   },
 
-  // Configuraciones de SEO y rendimiento
-  poweredByHeader: false,
+  // Bundle optimization crítica
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization.splitChunks = {
+        chunks: "all",
+        minSize: 20000,
+        maxSize: 200000, // Reducido para chunks más pequeños
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all",
+            priority: 10,
+          },
+        },
+      };
+    }
+    return config;
+  },
 
-  // Optimización de imágenes
+  // Headers de performance
+  headers: async () => [
+    {
+      source: "/(.*)",
+      headers: [
+        {
+          key: "X-DNS-Prefetch-Control",
+          value: "on",
+        },
+      ],
+    },
+    {
+      source: "/images/:path*",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=31536000, immutable",
+        },
+      ],
+    },
+  ],
+
+  // Image optimization - configuración más agresiva
   images: {
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 828, 1200, 1920], // Reducido
+    imageSizes: [32, 64, 128, 256], // Reducido
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "rivieradeleste.com",
-        port: "",
-        pathname: "/images/**",
-      },
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
@@ -36,55 +75,18 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "madebydesignesia.com",
-        port: "",
-        pathname: "/themes/residem/images/**",
-      },
-      {
-        protocol: "https",
         hostname: "images.pexels.com",
         port: "",
         pathname: "/**",
       },
     ],
+    minimumCacheTTL: 86400,
+    dangerouslyAllowSVG: true,
   },
 
-  // Seguridad y headers
-  headers: async () => [
-    {
-      source: "/(.*)",
-      headers: [
-        {
-          key: "X-Content-Type-Options",
-          value: "nosniff",
-        },
-        {
-          key: "X-Frame-Options",
-          value: "SAMEORIGIN",
-        },
-        {
-          key: "Strict-Transport-Security",
-          value: "max-age=31536000; includeSubDomains; preload",
-        },
-      ],
-    },
-  ],
-
-  // Otras optimizaciones
+  // Compress
   compress: true,
-
-  // Configuración de webpack (opcional)
-  webpack: (config, { isServer }) => {
-    // Optimizaciones específicas
-    if (!isServer) {
-      config.optimization.splitChunks = {
-        chunks: "all",
-        maxInitialRequests: 30,
-        maxAsyncRequests: 30,
-      };
-    }
-    return config;
-  },
+  poweredByHeader: false,
 };
 
 const withNextIntl = createNextIntlPlugin();

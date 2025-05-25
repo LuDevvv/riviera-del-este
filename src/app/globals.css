@@ -45,12 +45,3 @@ body {
     --primary-light: #7e9c97;
   }
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}

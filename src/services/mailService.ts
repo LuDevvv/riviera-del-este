@@ -1,7 +1,6 @@
 import { Resend } from "resend";
 import { ContactSchema, ContactData } from "@lib/types/contact";
 
-// Fixed agent info for template
 const AGENT_INFO = {
   name: "Rufy Castor",
   phone: "(809) 299-5767",
@@ -32,7 +31,7 @@ export class EmailService {
       const { error } = await this.resend.emails.send({
         from: process.env.EMAIL_FROM!,
         to: process.env.EMAIL_TO!,
-        replyTo: data.email, // Fixed: replyTo instead of reply_to
+        replyTo: data.email,
         subject: `Nuevo Contacto - ${data.name}`,
         html: this.createEmailTemplate(data),
       });
@@ -49,7 +48,6 @@ export class EmailService {
         success: true,
       };
     } catch (err: any) {
-      // Fixed: explicit any type
       console.error("Error en servicio de email:", err);
       return {
         success: false,
