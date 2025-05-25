@@ -8,14 +8,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, ContactData } from "@lib/types/contact";
 import { Calendar, Clock, User, Mail, MessageSquare } from "lucide-react";
 
-// LIMITAR SELECT DE LA FECHA COON LOS DIAS DEL EVENTO DEL 6 AL 8
-
 export default function Contact() {
   const t = useTranslations("home.contact");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
+
+  // Event dates (June 6-8, 2025)
+  const eventDates = [
+    { value: "2025-06-06", label: "Viernes 6 de Junio, 2025" },
+    { value: "2025-06-07", label: "Sábado 7 de Junio, 2025" },
+    { value: "2025-06-08", label: "Domingo 8 de Junio, 2025" },
+  ];
 
   const {
     register,
@@ -27,7 +32,7 @@ export default function Contact() {
     defaultValues: {
       name: "",
       email: "",
-      date: new Date().toISOString().split("T")[0],
+      date: "2025-06-06", // Default to first event day
       time: "10:00",
       message: "",
     },
@@ -35,6 +40,7 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactData) => {
     setIsSubmitting(true);
+    setSubmitStatus(null); // Reset status
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -47,12 +53,18 @@ export default function Contact() {
       if (response.ok) {
         setSubmitStatus("success");
         reset();
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => setSubmitStatus(null), 5000);
       } else {
         setSubmitStatus("error");
+        // Auto-hide error message after 8 seconds
+        setTimeout(() => setSubmitStatus(null), 8000);
       }
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error sending message:", error);
+      // Auto-hide error message after 8 seconds
+      setTimeout(() => setSubmitStatus(null), 8000);
     } finally {
       setIsSubmitting(false);
     }
@@ -149,18 +161,23 @@ export default function Contact() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                {/* Date Input */}
+                {/* Date Select */}
                 <div>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400 z-10">
                       <Calendar size={18} aria-hidden="true" />
                     </div>
-                    <input
-                      type="date"
+                    <select
                       {...register("date")}
-                      className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-700"
+                      className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-700 appearance-none"
                       aria-invalid={errors.date ? "true" : "false"}
-                    />
+                    >
+                      {eventDates.map((date) => (
+                        <option key={date.value} value={date.value}>
+                          {date.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   {errors.date && (
                     <p className="text-red-500 text-sm mt-1" role="alert">
@@ -180,11 +197,11 @@ export default function Contact() {
                       className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-700 appearance-none"
                       aria-invalid={errors.time ? "true" : "false"}
                     >
-                      {[...Array(11)].map((_, i) => {
-                        const hour = i + 9;
+                      {[...Array(9)].map((_, i) => {
+                        const hour = i + 10; // 10 AM to 6 PM
                         return (
                           <option key={hour} value={`${hour}:00`}>
-                            {`${hour}:00`}
+                            {hour > 12 ? `${hour - 12}:00 PM` : `${hour}:00 AM`}
                           </option>
                         );
                       })}
@@ -223,27 +240,82 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-secondary hover:bg-secondary-dark disabled:bg-secondary/70 text-white px-6 sm:px-8 py-3 rounded-md font-medium uppercase text-sm tracking-wider transition-colors w-full sm:w-auto min-w-[200px]"
+                  className="relative bg-secondary hover:bg-secondary-dark disabled:bg-secondary/70 text-white px-6 sm:px-8 py-3 rounded-md font-medium uppercase text-sm tracking-wider transition-all duration-300 w-full sm:w-auto min-w-[200px] overflow-hidden"
                   aria-busy={isSubmitting}
                 >
-                  {isSubmitting ? t("sending") : t("submit")}
+                  <span
+                    className={`transition-all duration-300 ${isSubmitting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}
+                  >
+                    {t("submit")}
+                  </span>
+
+                  {isSubmitting && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span className="text-white text-sm animate-pulse">
+                          {t("sending")}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </button>
 
                 {submitStatus === "success" && (
                   <div
-                    className="bg-green-100 text-green-800 p-3 rounded-md mt-4 w-full"
+                    className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 p-4 rounded-lg mt-4 w-full shadow-sm animate-in slide-in-from-bottom-2 duration-500"
                     role="alert"
                   >
-                    {t("success")}
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-medium">{t("success")}</p>
+                        <p className="text-sm text-green-600 mt-1">
+                          Te contactaremos pronto
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
                 {submitStatus === "error" && (
                   <div
-                    className="bg-red-100 text-red-800 p-3 rounded-md mt-4 w-full"
+                    className="bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 text-red-800 p-4 rounded-lg mt-4 w-full shadow-sm animate-in slide-in-from-bottom-2 duration-500"
                     role="alert"
                   >
-                    {t("error")}
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-medium">{t("error")}</p>
+                        <p className="text-sm text-red-600 mt-1">
+                          Intenta nuevamente en unos momentos
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>

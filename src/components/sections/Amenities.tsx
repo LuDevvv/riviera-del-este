@@ -7,20 +7,17 @@ import { useTranslations } from "next-intl";
 export default function Amenities() {
   const t = useTranslations("home.amenities");
 
-  // Left column amenities from the brochure, structured for two columns
   const leftColumnAmenities = [
     "multiUseCourt",
     "tennisCourt",
-    "paddleCourt",
     "swimmingPool",
     "bikePath",
     "outdoorGym",
     "indoorGym",
+    "linearParks",
   ];
 
-  // Right column amenities from the brochure
   const rightColumnAmenities = [
-    "linearParks",
     "gardens",
     "kidsArea",
     "gazebo",

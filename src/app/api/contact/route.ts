@@ -19,6 +19,8 @@ export async function POST(request: NextRequest) {
 
     const result = await emailService.sendContactEmail(body);
 
+    console.log({ result });
+
     if (result.success) {
       return NextResponse.json(
         {
