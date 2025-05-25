@@ -1,11 +1,10 @@
-// src/app/[locale]/layout.tsx - Solo optimizaciones críticas
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@i18n/routing";
 import { DM_Sans, Jost } from "next/font/google";
 import { Suspense } from "react";
 import "../globals.css";
-import "../styles/minimal-animations.css";
+import "@styles/minimal-animations.css"; // Importar solo las animaciones necesarias
 
 // Optimización: preload solo las fuentes esenciales
 const dmSans = DM_Sans({
