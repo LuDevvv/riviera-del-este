@@ -31,7 +31,6 @@ export const metadata = {
   },
   description:
     "Descubre las exclusivas residencias de Riviera del Este. Apartamentos de lujo en San Pedro de Macorís.",
-  // Reducir metadata no esencial
 };
 
 export default async function LocaleLayout({
@@ -57,7 +56,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${dmSans.variable} ${jost.variable}`}>
       <head>
-        {/* Solo preloads críticos */}
         <link
           rel="preload"
           href="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg"
@@ -67,24 +65,6 @@ export default async function LocaleLayout({
         />
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://images.pexels.com" />
-
-        {/* Critical CSS inline - solo lo esencial */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            body { 
-              font-family: var(--font-dm-sans, system-ui); 
-              margin: 0;
-              padding: 0;
-            }
-            .loading-skeleton { 
-              background: #f0f0f0; 
-              animation: pulse 1.5s ease-in-out infinite alternate;
-            }
-            @keyframes pulse { to { opacity: 0.6; } }
-          `,
-          }}
-        />
       </head>
 
       <body className="antialiased" suppressHydrationWarning>

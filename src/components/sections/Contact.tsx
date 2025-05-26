@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, ContactData } from "@lib/types/contact";
 import { Calendar, Clock, User, Mail, MessageSquare } from "lucide-react";
+import AnimatedSection from "@components/ui/AnimatedSection";
 
 export default function Contact() {
   const t = useTranslations("home.contact");
@@ -73,23 +74,35 @@ export default function Contact() {
   return (
     <section id="contact" className="py-14 b-14 md:py-16 bg-white">
       <div className="container mx-auto px-4 max-w-[1000px]">
-        <div className="flex justify-center mb-4">
-          <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
-            {t("title")}
-          </span>
-        </div>
+        {/* Header Section */}
+        <AnimatedSection animation="fadeIn" threshold={0.3}>
+          <div className="flex justify-center mb-4">
+            <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
+              {t("title")}
+            </span>
+          </div>
+        </AnimatedSection>
 
-        <h2 className="text-3xl md:text-4xl font-display text-center font-medium mb-2 text-black">
-          {t("subtitle")}
-        </h2>
+        <AnimatedSection animation="slideUp" delay={200} threshold={0.3}>
+          <h2 className="text-3xl md:text-4xl font-display text-center font-medium mb-2 text-black">
+            {t("subtitle")}
+          </h2>
+        </AnimatedSection>
 
-        <p className="text-center text-gray-500 mb-6 md:mb-8 max-w-2xl mx-auto">
-          {t("description")}
-        </p>
+        <AnimatedSection animation="slideUp" delay={400} threshold={0.3}>
+          <p className="text-center text-gray-500 mb-6 md:mb-8 max-w-2xl mx-auto">
+            {t("description")}
+          </p>
+        </AnimatedSection>
 
         <div className="grid md:grid-cols-5 gap-6 md:gap-1">
           {/* Agent Information */}
-          <div className="flex flex-col items-center md:col-span-2">
+          <AnimatedSection
+            animation="slideIn"
+            delay={600}
+            threshold={0.2}
+            className="flex flex-col items-center md:col-span-2"
+          >
             <div className="w-full max-w-[270px] mx-auto overflow-hidden rounded-lg mb-2">
               <Image
                 src="https://res.cloudinary.com/dcuapqoii/image/upload/v1747842317/rufycastor_yjf0as.jpg"
@@ -109,10 +122,15 @@ export default function Contact() {
             >
               (809) 299-5767
             </a>
-          </div>
+          </AnimatedSection>
 
           {/* Contact Form */}
-          <div className="md:col-span-3">
+          <AnimatedSection
+            animation="slideIn"
+            delay={800}
+            threshold={0.2}
+            className="md:col-span-3"
+          >
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                 {/* Name Input */}
@@ -261,9 +279,10 @@ export default function Contact() {
                   )}
                 </button>
 
+                {/* Status Messages */}
                 {submitStatus === "success" && (
                   <div
-                    className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 p-4 rounded-lg mt-4 w-full shadow-sm animate-in slide-in-from-bottom-2 duration-500"
+                    className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 p-4 rounded-lg mt-4 w-full shadow-sm"
                     role="alert"
                   >
                     <div className="flex items-center space-x-2">
@@ -292,7 +311,7 @@ export default function Contact() {
 
                 {submitStatus === "error" && (
                   <div
-                    className="bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 text-red-800 p-4 rounded-lg mt-4 w-full shadow-sm animate-in slide-in-from-bottom-2 duration-500"
+                    className="bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 text-red-800 p-4 rounded-lg mt-4 w-full shadow-sm"
                     role="alert"
                   >
                     <div className="flex items-center space-x-2">
@@ -320,7 +339,7 @@ export default function Contact() {
                 )}
               </div>
             </form>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

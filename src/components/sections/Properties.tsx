@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import PropertyCard from "@components/ui/PropertyCard";
 import { AnimatePresence, motion } from "framer-motion";
+import AnimatedSection from "@components/ui/AnimatedSection";
+import FilterTabs, { FilterOption } from "@components/ui/FilterTabs";
 
 export default function Properties() {
   const t = useTranslations("home.properties");
@@ -60,6 +62,15 @@ export default function Properties() {
     },
   ];
 
+  // Filter options for the tabs
+  const propertyFilterOptions: FilterOption<
+    "all" | "residences" | "premium"
+  >[] = [
+    { value: "all", label: t("allProperties") },
+    { value: "residences", label: t("residences") },
+    { value: "premium", label: t("premium") },
+  ];
+
   // Filter properties based on active tab
   const filteredProperties =
     activeTab === "all"
@@ -69,71 +80,59 @@ export default function Properties() {
   return (
     <section id="models" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
-        <div className="flex justify-center mb-4">
-          <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
-            {t("badge")}
-          </span>
-        </div>
+        {/* Header Section */}
+        <AnimatedSection animation="fadeIn" threshold={0.3}>
+          <div className="flex justify-center mb-4">
+            <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
+              {t("badge")}
+            </span>
+          </div>
+        </AnimatedSection>
 
-        <h2 className="text-3xl md:text-4xl font-display text-center font-medium mb-4 text-black">
-          {t("title")}
-        </h2>
+        <AnimatedSection animation="slideUp" delay={200} threshold={0.3}>
+          <h2 className="text-3xl md:text-4xl font-display text-center font-medium mb-4 text-black">
+            {t("title")}
+          </h2>
+        </AnimatedSection>
 
-        <p className="text-center text-gray-500 mb-8 max-w-2xl mx-auto">
-          {t("description")}
-        </p>
+        <AnimatedSection animation="slideUp" delay={400} threshold={0.3}>
+          <p className="text-center text-gray-500 mb-8 max-w-2xl mx-auto">
+            {t("description")}
+          </p>
+        </AnimatedSection>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white rounded-lg p-1 gap-1 shadow-md">
-            <button
-              className={`px-5 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeTab === "all"
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-              onClick={() => setActiveTab("all")}
-            >
-              {t("allProperties")}
-            </button>
-            <button
-              className={`px-5 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeTab === "residences"
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-              onClick={() => setActiveTab("residences")}
-            >
-              {t("residences")}
-            </button>
-            <button
-              className={`px-5 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeTab === "premium"
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-              onClick={() => setActiveTab("premium")}
-            >
-              {t("premium")}
-            </button>
-          </div>
-        </div>
+        <AnimatedSection
+          animation="scaleIn"
+          delay={600}
+          threshold={0.3}
+          className="mb-4"
+        >
+          <FilterTabs
+            options={propertyFilterOptions}
+            activeFilter={activeTab}
+            onFilterChange={setActiveTab}
+            variant="primary"
+          />
+        </AnimatedSection>
 
-        {/* Property Grid with Animation */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
-            {filteredProperties.map((property) => (
-              <PropertyCard key={property.id} {...property} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {/* Property Grid - Simple Animation */}
+        <AnimatedSection animation="fadeIn" delay={800} threshold={0.2}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              {filteredProperties.map((property) => (
+                <PropertyCard key={property.id} {...property} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </AnimatedSection>
       </div>
     </section>
   );

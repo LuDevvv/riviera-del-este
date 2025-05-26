@@ -3,10 +3,14 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ImageSlider } from "@components/ui/ImageSlider";
-// AGREGAR SCROOLL AL TAB PARA QUE NO SE ROMPA
+import FilterTabs, { FilterOption } from "@components/ui/FilterTabs";
+import AnimatedSection from "@components/ui/AnimatedSection";
+
 export default function Gallery() {
   const t = useTranslations("home.gallery");
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState<
+    "all" | "exterior" | "interior" | "facilities"
+  >("all");
 
   const galleryItems = [
     {
@@ -59,6 +63,16 @@ export default function Gallery() {
     },
   ];
 
+  // Filter options for the tabs
+  const filterOptions: FilterOption<
+    "all" | "exterior" | "interior" | "facilities"
+  >[] = [
+    { value: "all", label: t("viewAll") },
+    { value: "exterior", label: t("exterior") },
+    { value: "interior", label: t("interior") },
+    { value: "facilities", label: t("facilities") },
+  ];
+
   // Filter items based on active filter
   const filteredItems =
     activeFilter === "all"
@@ -68,73 +82,51 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-20 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
-        <div className="flex justify-center mb-4">
-          <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
-            {t("badge")}
-          </span>
-        </div>
+        {/* Header Section */}
+        <AnimatedSection animation="fadeIn" threshold={0.3}>
+          <div className="flex justify-center mb-4">
+            <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
+              {t("badge")}
+            </span>
+          </div>
+        </AnimatedSection>
 
-        <h2 className="text-3xl md:text-4xl font-display text-center font-medium mb-4 text-black">
-          {t("title")}
-        </h2>
+        <AnimatedSection animation="slideUp" delay={200} threshold={0.3}>
+          <h2 className="text-3xl md:text-4xl font-display text-center font-medium mb-4 text-black">
+            {t("title")}
+          </h2>
+        </AnimatedSection>
 
-        <p className="text-center text-gray-500 mb-8 max-w-2xl mx-auto">
-          {t("description")}
-        </p>
+        <AnimatedSection animation="slideUp" delay={400} threshold={0.3}>
+          <p className="text-center text-gray-500 mb-8 max-w-2xl mx-auto">
+            {t("description")}
+          </p>
+        </AnimatedSection>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white rounded-lg p-1 gap-1 shadow-md">
-            <button
-              onClick={() => setActiveFilter("all")}
-              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeFilter === "all"
-                  ? "bg-secondary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {t("viewAll")}
-            </button>
-            <button
-              onClick={() => setActiveFilter("exterior")}
-              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeFilter === "exterior"
-                  ? "bg-secondary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {t("exterior")}
-            </button>
-            <button
-              onClick={() => setActiveFilter("interior")}
-              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeFilter === "interior"
-                  ? "bg-secondary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {t("interior")}
-            </button>
-            <button
-              onClick={() => setActiveFilter("facilities")}
-              className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                activeFilter === "facilities"
-                  ? "bg-secondary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {t("facilities")}
-            </button>
-          </div>
-        </div>
+        <AnimatedSection
+          animation="scaleIn"
+          delay={600}
+          threshold={0.3}
+          className="mb-4"
+        >
+          <FilterTabs
+            options={filterOptions}
+            activeFilter={activeFilter}
+            onFilterChange={setActiveFilter}
+            variant="secondary"
+          />
+        </AnimatedSection>
 
         {/* Image Slider */}
-        <ImageSlider
-          items={filteredItems}
-          showGradients={false}
-          backgroundColor="bg-white"
-          autoPlay={true}
-        />
+        <AnimatedSection animation="fadeIn" delay={800} threshold={0.2}>
+          <ImageSlider
+            items={filteredItems}
+            showGradients={false}
+            backgroundColor="bg-white"
+            autoPlay={true}
+          />
+        </AnimatedSection>
       </div>
     </section>
   );

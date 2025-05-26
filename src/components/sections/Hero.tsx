@@ -41,13 +41,13 @@ export default function Hero() {
               {t("headline")}
             </h1>
 
-            <AnimatedSection animation="slideUp" delay={300}>
+            <AnimatedSection animation="slideUp" delay={200}>
               <p className="text-lg sm:text-xl text-white/90 mb-6">
                 {t("subheadline")}
               </p>
             </AnimatedSection>
 
-            <AnimatedSection animation="slideUp" delay={500}>
+            <AnimatedSection animation="slideUp" delay={300}>
               <div className="flex flex-wrap gap-4">
                 <a
                   href="#contact"
@@ -71,7 +71,7 @@ export default function Hero() {
           {/* Contador */}
           <AnimatedSection
             animation="scaleIn"
-            delay={700}
+            delay={400}
             className="md:self-center"
           >
             <CounterSection />
@@ -81,7 +81,7 @@ export default function Hero() {
 
       {/* Features (oculto en móvil) */}
       <div className="absolute bottom-0 left-0 right-0 z-10 hidden md:block">
-        <AnimatedSection animation="slideUp" delay={1000}>
+        <AnimatedSection animation="slideUp" delay={400}>
           <FeaturesBar />
         </AnimatedSection>
       </div>
