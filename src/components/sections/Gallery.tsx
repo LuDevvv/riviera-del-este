@@ -108,14 +108,16 @@ export default function Gallery() {
           animation="scaleIn"
           delay={600}
           threshold={0.3}
-          className="mb-4"
+          className="mb-8 flex justify-center items-center"
         >
-          <FilterTabs
-            options={filterOptions}
-            activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
-            variant="secondary"
-          />
+          <div>
+            <FilterTabs
+              options={filterOptions}
+              activeFilter={activeFilter}
+              onFilterChange={setActiveFilter}
+              variant="secondary"
+            />
+          </div>
         </AnimatedSection>
 
         {/* Image Slider */}

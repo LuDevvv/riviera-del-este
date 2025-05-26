@@ -82,7 +82,7 @@ export default function Footer() {
             {/* Social Media Icons */}
             <div className="flex space-x-3 mt-6">
               <a
-                href="https://www.facebook.com/casalina.srl"
+                href="https://www.facebook.com/casalinainmobiliaria"
                 target="_blank"
                 className="bg-white/10 hover:bg-secondary p-2 rounded transition-colors"
               >

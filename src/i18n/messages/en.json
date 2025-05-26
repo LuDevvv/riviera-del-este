@@ -99,7 +99,10 @@
       "bedrooms": "Bedrooms",
       "patio": "Patio",
       "available": "Available",
-      "penthouse": "Penthouse"
+      "penthouse": "Penthouse",
+      "limitedUnits": "Limited Units",
+      "reserveNow": "Reserve Now",
+      "onlyFewLeft": "Only few units left"
     },
     "gallery": {
       "badge": "Gallery",

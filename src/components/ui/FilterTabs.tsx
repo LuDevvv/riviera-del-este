@@ -26,7 +26,7 @@ export default function FilterTabs<T extends string = string>({
 
   return (
     <div className={`w-full ${className}`}>
-      <div className="w-full overflow-x-auto scrollbar-hide inline-flex">
+      <div className="w-full overflow-x-auto scrollbar-hide">
         <div className="min-w-max mx-auto inline-flex bg-white rounded-lg p-1 m-2 gap-1 shadow-md">
           {options.map((option) => (
             <button
