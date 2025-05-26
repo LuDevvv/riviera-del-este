@@ -114,7 +114,7 @@ export default function Properties() {
           {/* Right Column - Special Offer */}
           <div className="lg:col-span-1">
             <AnimatedSection animation="scaleIn" delay={600} threshold={0.3}>
-              <div className="bg-gradient-to-br from-secondary to-secondary-dark rounded-2xl p-6 text-white relative overflow-hidden">
+              <div className="bg-secondary rounded-2xl p-6 text-white relative overflow-hidden">
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-8 translate-x-8"></div>
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full translate-y-6 -translate-x-6"></div>
@@ -147,7 +147,7 @@ export default function Properties() {
 
                   {/* Pulsing effect */}
                   <div className="absolute -top-1 -right-1">
-                    <div className="bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-bold animate-pulse">
+                    <div className="bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-bold">
                       ¡LIMITADO!
                     </div>
                   </div>
