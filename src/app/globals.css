@@ -46,3 +46,17 @@ body {
     --primary-light: #7e9c97;
   }
 }
+
+/* partners effect */
+
+.partners-infinite-slider {
+  overflow: visible !important;
+}
+
+.partners-infinite-slider .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.partners-infinite-slider:hover .swiper-wrapper {
+  animation-play-state: paused;
+}
