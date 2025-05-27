@@ -4,7 +4,6 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   // Core performance
   reactStrictMode: true,
-  swcMinify: true,
 
   // Experimental optimizations - solo las probadas
   experimental: {
@@ -59,6 +58,31 @@ const nextConfig: NextConfig = {
         },
       ],
     },
+    // Silenciar DevTools requests
+    {
+      source: "/.well-known/:path*",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=3600",
+        },
+      ],
+    },
+  ],
+
+  // Redirects para rutas comunes que causan 404
+  redirects: async () => [
+    {
+      source: "/favicon.ico",
+      destination: "/favicon.ico",
+      permanent: true,
+      missing: [
+        {
+          type: "header",
+          key: "x-favicon-redirect",
+        },
+      ],
+    },
   ],
 
   // Image optimization - configuración más agresiva
@@ -82,6 +106,13 @@ const nextConfig: NextConfig = {
     ],
     minimumCacheTTL: 86400,
     dangerouslyAllowSVG: true,
+  },
+
+  // Logging config
+  logging: {
+    fetches: {
+      fullUrl: false,
+    },
   },
 
   // Compress

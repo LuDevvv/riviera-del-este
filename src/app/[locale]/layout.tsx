@@ -4,22 +4,21 @@ import { routing } from "@i18n/routing";
 import { DM_Sans, Jost } from "next/font/google";
 import { Suspense } from "react";
 import "../globals.css";
-import "@styles/minimal-animations.css"; // Importar solo las animaciones necesarias
+import "@styles/minimal-animations.css";
 
-// Optimización: preload solo las fuentes esenciales
 const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-dm-sans",
   preload: true,
-  weight: ["400", "500", "600"], // Solo los pesos que usamos
+  weight: ["400", "500", "600"],
 });
 
 const jost = Jost({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-jost",
-  preload: false, // No precargar si es secundaria
+  preload: false,
   weight: ["400", "500"],
 });
 
@@ -38,9 +37,9 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>; // Changed to Promise
 }) {
-  const locale = params.locale;
+  const { locale } = await params; // Await params
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();

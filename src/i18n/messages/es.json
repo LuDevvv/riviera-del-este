@@ -102,7 +102,22 @@
       "penthouse": "Penthouse",
       "limitedUnits": "Pocas Unidades",
       "reserveNow": "Reservar Ahora",
-      "onlyFewLeft": "Solo quedan pocas disponibles"
+      "onlyFewLeft": "Solo quedan pocas disponibles",
+      "specialOffer": {
+        "badge": "Oferta Especial",
+        "title": "¡Se Regala en Grande!",
+        "description": {
+          "part1": "Si reserva del",
+          "dates": "6 al 8 de Junio",
+          "part2": "con solo",
+          "amount": "$1,000",
+          "part3": ", le incluimos",
+          "items": "estufa y nevera",
+          "part4": "completamente gratis."
+        },
+        "validity": "Válido solo durante el evento",
+        "limited": "¡LIMITADO!"
+      }
     },
     "gallery": {
       "badge": "Galería",

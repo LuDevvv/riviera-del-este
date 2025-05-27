@@ -40,8 +40,7 @@ export default function Partners() {
 
   return (
     <section className="py-12 md:py-16 bg-white">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
+      <div className="container mx-auto px-4 max-w-[1300px]">
         <AnimatedSection animation="fadeIn" threshold={0.3}>
           <div className="flex justify-center mb-6 md:mb-8">
             <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
@@ -50,12 +49,10 @@ export default function Partners() {
           </div>
         </AnimatedSection>
 
-        {/* Partners Slider */}
         <AnimatedSection animation="fadeIn" delay={400} threshold={0.2}>
           <div className="relative overflow-hidden">
-            {/* Gradient overlays */}
-            <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-[-1px] w-16 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-[-1px] w-16 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
             <Swiper
               modules={[Autoplay]}
@@ -76,7 +73,7 @@ export default function Partners() {
             >
               {duplicatedPartners.map((partner, index) => (
                 <SwiperSlide key={`${partner.id}-${index}`} className="!w-auto">
-                  <div className="flex items-center justify-center px-4">
+                  <div className="flex items-center justify-center px-0 sm:px-4">
                     <div className="w-32 h-16 relative grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105">
                       <Image
                         src={partner.logo}

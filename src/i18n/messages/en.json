@@ -102,7 +102,22 @@
       "penthouse": "Penthouse",
       "limitedUnits": "Limited Units",
       "reserveNow": "Reserve Now",
-      "onlyFewLeft": "Only few units left"
+      "onlyFewLeft": "Only few units left",
+      "specialOffer": {
+        "badge": "Special Offer",
+        "title": "We Give Big!",
+        "description": {
+          "part1": "If you reserve from",
+          "dates": "June 6-8",
+          "part2": "with only",
+          "amount": "$1,000",
+          "part3": ", we include",
+          "items": "stove and refrigerator",
+          "part4": "completely free."
+        },
+        "validity": "Valid only during the event",
+        "limited": "LIMITED!"
+      }
     },
     "gallery": {
       "badge": "Gallery",
