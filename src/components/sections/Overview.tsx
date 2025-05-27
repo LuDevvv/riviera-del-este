@@ -54,7 +54,12 @@ export default function Overview() {
         </AnimatedSection>
 
         <AnimatedSection animation="fadeIn" delay={600} threshold={0.1}>
-          <ImageSlider items={overviewItems} autoPlay={true} />
+          <ImageSlider
+            items={overviewItems}
+            autoPlay={true}
+            showGradients={true}
+            gradientColor="primary"
+          />
         </AnimatedSection>
       </div>
     </section>

@@ -8,67 +8,111 @@ import AnimatedSection from "@components/ui/AnimatedSection";
 import FilterTabs, { FilterOption } from "@components/ui/FilterTabs";
 import { Gift, Calendar } from "lucide-react";
 
+// Real property data based on Riviera del Este specifications
+interface PropertyDetails {
+  id: string;
+  name: string;
+  bedrooms: number;
+  bathrooms: number;
+  area: number;
+  floor: number;
+  type: "residences" | "premium";
+  hasTerraza?: boolean;
+  hasPatio?: boolean;
+  hasEstudio?: boolean;
+  isPenthouse?: boolean;
+  isLimitedUnits?: boolean;
+  image: string;
+}
+
 export default function Properties() {
   const t = useTranslations("home.properties");
   const [activeTab, setActiveTab] = useState<"all" | "residences" | "premium">(
     "all"
   );
 
-  // Property data based on the brochure
-  const properties = [
+  // Real property data from Riviera del Este
+  const properties: PropertyDetails[] = [
     {
-      id: "residences-2bed",
+      id: "tipo-a-1er-piso",
+      name: "Tipo A - 1er Piso",
+      bedrooms: 2,
+      bathrooms: 2,
+      area: 85,
+      floor: 1,
+      type: "residences",
+      hasPatio: true,
+      isLimitedUnits: false,
       image:
         "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
-      bedrooms: 2,
-      area: 75,
-      hasPatio: true,
-      type: "residences" as const,
-      isLimitedUnits: false,
     },
     {
-      id: "residences-3bed",
+      id: "tipo-a-3er-piso",
+      name: "Tipo A - 3er Piso",
+      bedrooms: 2,
+      bathrooms: 2,
+      area: 75,
+      floor: 3,
+      type: "residences",
+      isLimitedUnits: false,
       image:
         "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
-      bedrooms: 3,
-      area: 90,
-      hasPatio: true,
-      type: "residences" as const,
-      isLimitedUnits: false,
     },
     {
-      id: "premium-1bed",
+      id: "tipo-a-4to-piso-terraza",
+      name: "Tipo A - 4to Piso",
+      bedrooms: 2,
+      bathrooms: 2,
+      area: 100, // 75 apto + 25 terraza
+      floor: 4,
+      type: "premium",
+      hasTerraza: true,
+      isLimitedUnits: true,
       image:
         "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg",
-      bedrooms: 1,
-      area: 60,
-      hasPatio: true,
-      type: "premium" as const,
-      isLimitedUnits: true, // Limited units for premium 1-bed
     },
     {
-      id: "premium-2bed",
+      id: "tipo-b-3-habs",
+      name: "Tipo B - 3 Habitaciones",
+      bedrooms: 3,
+      bathrooms: 2,
+      area: 115,
+      floor: 2,
+      type: "residences",
+      isLimitedUnits: false,
       image:
         "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
-      bedrooms: 2,
-      area: 75,
-      hasPatio: true,
-      type: "premium" as const,
-      isLimitedUnits: true, // Limited units for premium 2-bed
     },
     {
-      id: "premium-3bed",
+      id: "tipo-d-1er-piso-patio",
+      name: "Tipo D - 1er Piso",
+      bedrooms: 3,
+      bathrooms: 3,
+      area: 115,
+      floor: 1,
+      type: "premium",
+      hasPatio: true,
+      isLimitedUnits: true,
       image:
         "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg",
+    },
+    {
+      id: "penthouse-4to-piso",
+      name: "Penthouse Premium",
       bedrooms: 3,
-      area: 90,
-      hasPatio: true,
-      type: "premium" as const,
-      isLimitedUnits: false, // Plenty available for 3-bed premium
+      bathrooms: 3,
+      area: 200,
+      floor: 4,
+      type: "premium",
+      hasTerraza: true,
+      hasEstudio: true,
+      isPenthouse: true,
+      isLimitedUnits: true,
+      image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
     },
   ];
 
-  // Filter options for the tabs
+  // Filter options
   const propertyFilterOptions: FilterOption<
     "all" | "residences" | "premium"
   >[] = [
@@ -86,7 +130,7 @@ export default function Properties() {
   return (
     <section id="models" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
-        {/* Header Section - Centered */}
+        {/* Header Section */}
         <div className="text-center mb-12">
           <AnimatedSection animation="fadeIn" threshold={0.3}>
             <div className="flex justify-center mb-4">
@@ -108,18 +152,16 @@ export default function Properties() {
             </p>
           </AnimatedSection>
 
-          {/* Special Offer - Centered */}
+          {/* Special Offer */}
           <AnimatedSection animation="scaleIn" delay={600} threshold={0.3}>
             <div className="max-w-lg mx-auto mb-8">
               <div className="bg-secondary rounded-2xl p-6 md:p-8 text-white relative overflow-hidden">
-                {/* Limited Badge - Responsive positioning */}
                 <div className="absolute top-3 right-2 md:top-4 md:right-4 z-20">
                   <div className="bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-bold animate-pulse">
                     {t("specialOffer.limited")}
                   </div>
                 </div>
 
-                {/* Background decoration */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-8 translate-x-8"></div>
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full translate-y-6 -translate-x-6"></div>
 

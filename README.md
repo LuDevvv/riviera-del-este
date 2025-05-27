@@ -1,36 +1,199 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Riviera del Este - Real Estate Landing Page
 
-## Getting Started
+A modern, multilingual real estate landing page built with Next.js 15, showcasing luxury residential properties in San Pedro de Macorís, Dominican Republic.
 
-First, run the development server:
+## 🏗️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS 4
+- **Internationalization**: next-intl
+- **Animations**: Framer Motion
+- **Forms**: React Hook Form + Zod validation
+- **Email**: Resend API
+- **Image Optimization**: Next.js Image + Cloudinary
+- **Smooth Scrolling**: Lenis
+- **Carousel**: Swiper.js
+
+## 🌟 Features
+
+- **Multilingual Support** (English/Spanish)
+- **Responsive Design** - Mobile-first approach
+- **Property Showcase** - 6 distinct apartment types
+- **Interactive Gallery** - Filtered image carousel
+- **Contact Form** - With email notifications
+- **Smooth Animations** - Intersection Observer based
+- **SEO Optimized** - Static generation & metadata
+- **Performance First** - Image optimization & lazy loading
+
+## 🏠 Property Types
+
+1. **Tipo A - 1er Piso**: 2bed/2bath, 85m² + patio
+2. **Tipo A - 3er Piso**: 2bed/2bath, 75m²
+3. **Tipo A - 4to Piso**: 2bed/2bath, 100m² + terraza
+4. **Tipo B**: 3bed/2bath, 115m²
+5. **Tipo D - 1er Piso**: 3bed/3bath, 115m² + patio
+6. **Penthouse Premium**: 3bed/3bath, 200m² + terraza + studio
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm/yarn/pnpm
+
+### Installation
+
+```bash
+# Clone repository
+git clone <repository-url>
+cd riviera-del-este
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+```
+
+### Environment Variables
+
+```env
+# Email Configuration (Resend)
+RESEND_API_KEY=your_resend_api_key
+EMAIL_FROM=noreply@rivieradeleste.com
+EMAIL_TO=info@casalinainmobiliaria.com
+
+# Optional: Analytics
+NEXT_PUBLIC_GA_ID=your_google_analytics_id
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── [locale]/          # Internationalized routes
+│   ├── api/contact/       # Contact form API
+│   └── globals.css        # Global styles
+├── components/
+│   ├── sections/          # Page sections
+│   ├── ui/               # Reusable UI components
+│   └── landing/          # Layout components
+├── hooks/                # Custom React hooks
+├── i18n/                 # Internationalization
+│   ├── messages/         # Translation files
+│   └── routing.ts        # Locale routing
+├── lib/                  # Utilities & types
+└── services/             # API services
+```
 
-## Learn More
+## 🎨 Key Components
 
-To learn more about Next.js, take a look at the following resources:
+### Property Cards
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Dynamic property data from real specifications
+- Responsive layout with consistent heights
+- Multi-language support
+- Reservation CTA ($1,000 USD)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Image Slider
 
-## Deploy on Vercel
+- Infinite loop navigation
+- Auto-play with pause on hover
+- Responsive previews
+- Touch/swipe support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Contact Form
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Zod validation
+- Email notifications via Resend
+- Event-specific date selection
+- Success/error states
+
+## 🌐 Internationalization
+
+Supports English (`en`) and Spanish (`es`) with:
+
+- URL-based locale switching (`/en`, `/es`)
+- Language switcher component
+- Translated content for all sections
+- Locale-aware routing
+
+## 📧 Email Integration
+
+Uses Resend API for contact form submissions:
+
+- Professional HTML email templates
+- Agent photo and contact info
+- Form data sanitization
+- Error handling & validation
+
+## 🚀 Deployment
+
+### Build
+
+```bash
+npm run build
+npm start
+```
+
+### Vercel (Recommended)
+
+```bash
+# Deploy to Vercel
+vercel --prod
+```
+
+Configure environment variables in Vercel dashboard.
+
+## 📱 Performance Optimizations
+
+- **Images**: Next.js Image with Cloudinary CDN
+- **Fonts**: Google Fonts with display swap
+- **Bundle**: Code splitting & tree shaking
+- **Animations**: Hardware acceleration & reduced motion
+- **Loading**: Lazy loading & prefetching
+
+## 🎯 Special Features
+
+### Property Showcase Event
+
+- June 6-8, 2025 promotional event
+- Special offer: Free appliances with $1,000 reservation
+- Countdown timer component
+- Event-specific contact form
+
+### Location Integration
+
+- Embedded Google Maps
+- Real coordinates: 18°27'00.7"N 69°19'24.0"W
+- Property details overlay
+- Mobile-responsive design
+
+## 🔧 Available Scripts
+
+```bash
+npm run dev          # Development server
+npm run build        # Production build
+npm run start        # Production server
+npm run lint         # ESLint check
+```
+
+## 📄 License
+
+© 2025 Riviera del Este. All rights reserved.
+
+## 🤝 Contact
+
+**Real Estate Agent**: Rufy Castor  
+**Phone**: +1 (809) 299-5767  
+**Email**: info@casalinainmobiliaria.com  
+**Address**: Calle Santos Alcalá, San Pedro de Macorís 21000
