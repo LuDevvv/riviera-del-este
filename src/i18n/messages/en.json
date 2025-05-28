@@ -76,7 +76,9 @@
       "emailInvalid": "Invalid email",
       "dateRequired": "Date is required",
       "timeRequired": "Time is required",
-      "messageTooShort": "Message must be at least 10 characters"
+      "messageTooShort": "Message must be at least 10 characters",
+      "selectDate": "Select date",
+      "selectTime": "Select time"
     },
     "location": {
       "badge": "Location",
@@ -114,7 +116,7 @@
           "part1": "If you reserve from",
           "dates": "June 6-8",
           "part2": "with only",
-          "amount": "$1,000",
+          "amount": "$1,000 USD",
           "part3": ", we include",
           "items": "stove and refrigerator",
           "part4": "completely free."
@@ -163,7 +165,7 @@
       "subscribe": "Subscribe",
       "event": {
         "dates": "Property Showcase: June 6-8, 2025",
-        "hours": "Open Daily: 10:00 AM - 6:00 PM"
+        "hours": "Open Daily: 10:00 AM - 5:00 PM"
       }
     },
     "whatsapp": {

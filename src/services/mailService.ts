@@ -56,7 +56,25 @@ export class EmailService {
     }
   }
 
+  // Función para formatear hora a 12hr
+  private formatTimeTo12Hour(time: string): string {
+    const [hour, minute] = time.split(":");
+    const hourNum = parseInt(hour);
+
+    if (hourNum === 0) {
+      return `12:${minute} AM`;
+    } else if (hourNum < 12) {
+      return `${hourNum}:${minute} AM`;
+    } else if (hourNum === 12) {
+      return `12:${minute} PM`;
+    } else {
+      return `${hourNum - 12}:${minute} PM`;
+    }
+  }
+
   private createEmailTemplate(data: ContactData): string {
+    const formattedTime = this.formatTimeTo12Hour(data.time);
+
     return `
     <!DOCTYPE html>
     <html lang="es">
@@ -99,7 +117,7 @@ export class EmailService {
                         <p><strong>Nombre:</strong> ${this.sanitizeHTML(data.name)}</p>
                         <p><strong>Email:</strong> <a href="mailto:${this.sanitizeHTML(data.email)}" style="color:#274e47;text-decoration:none;">${this.sanitizeHTML(data.email)}</a></p>
                         <p><strong>Fecha Visita:</strong> ${this.formatDate(data.date)}</p>
-                        <p><strong>Hora Visita:</strong> ${this.sanitizeHTML(data.time)}</p>
+                        <p><strong>Hora Visita:</strong> ${formattedTime}</p>
                         <div style="margin-top:15px;">
                           <strong>Mensaje:</strong>
                           <div style="background-color:#f8f9fa;padding:10px;border-radius:4px;margin-top:5px;">

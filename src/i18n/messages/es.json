@@ -76,7 +76,9 @@
       "emailInvalid": "Email inválido",
       "dateRequired": "Fecha requerida",
       "timeRequired": "Hora requerida",
-      "messageTooShort": "El mensaje debe tener al menos 10 caracteres"
+      "messageTooShort": "El mensaje debe tener al menos 10 caracteres",
+      "selectDate": "Seleccionar fecha",
+      "selectTime": "Seleccionar hora"
     },
     "location": {
       "badge": "Ubicación",
@@ -114,7 +116,7 @@
           "part1": "Si reserva del",
           "dates": "6 al 8 de Junio",
           "part2": "con solo",
-          "amount": "$1,000",
+          "amount": "$1,000 USD",
           "part3": ", le incluimos",
           "items": "estufa y nevera",
           "part4": "completamente gratis."
@@ -163,7 +165,7 @@
       "subscribe": "Suscribirse",
       "event": {
         "dates": "Feria Inmobiliaria Del 6 al 8 de Junio, 2025",
-        "hours": "Abierto Diariamente: 10:00 AM - 6:00 PM"
+        "hours": "Abierto Diariamente: 10:00 AM - 5:00 PM"
       }
     },
     "whatsapp": {

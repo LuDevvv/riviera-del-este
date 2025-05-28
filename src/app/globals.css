@@ -48,7 +48,6 @@ body {
 }
 
 /* partners effect */
-
 .partners-infinite-slider {
   overflow: visible !important;
 }
@@ -59,4 +58,118 @@ body {
 
 .partners-infinite-slider:hover .swiper-wrapper {
   animation-play-state: paused;
+}
+
+/* React Day Picker Custom Styles */
+.simple-calendar {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.calendar-nav-button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.calendar-nav-button:hover:not(:disabled) {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+.calendar-nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  color: #374151;
+}
+
+.calendar-day:hover:not(.disabled):not(.sunday) {
+  background-color: #f3f4f6;
+  transform: scale(1.05);
+}
+
+.calendar-day.selected {
+  background-color: #3c7269 !important;
+  color: white !important;
+  font-weight: 600;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(60, 114, 105, 0.3);
+}
+
+.calendar-day.today:not(.selected) {
+  background-color: rgba(60, 114, 105, 0.1);
+  color: #3c7269;
+  font-weight: 600;
+}
+
+.calendar-day.disabled,
+.calendar-day.sunday {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.calendar-day.disabled:hover,
+.calendar-day.sunday:hover {
+  background: none;
+  transform: none;
+}
+
+.calendar-day.other-month {
+  color: #d1d5db;
+  cursor: not-allowed;
 }
