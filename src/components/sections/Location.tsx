@@ -10,7 +10,7 @@ export default function Location() {
 
   // Real coordinates from Google Maps
   const buildingImage =
-    "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg";
+    "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404986/1_xwydtj.png";
   const googleMapsUrl =
     "https://www.google.com/maps/place/18%C2%B027'00.7%22N+69%C2%B019'24.0%22W/@18.4506609,-69.3237455,17.61z/data=!4m4!3m3!8m2!3d18.4501944!4d-69.3233333?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D";
 

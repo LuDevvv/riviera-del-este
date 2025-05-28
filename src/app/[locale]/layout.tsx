@@ -77,15 +77,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${dmSans.variable} ${jost.variable}`}>
       <head>
-        <link
-          rel="preload"
-          href="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg"
-          as="image"
-          type="image/jpeg"
-          fetchPriority="high"
-        />
         <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>

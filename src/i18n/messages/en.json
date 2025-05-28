@@ -140,7 +140,14 @@
       "description": "Perfect for families, couples, and professionals, this apartment combines comfort, convenience, and a clean contemporary style.",
       "feature1": "Premium finishes and modern appliances",
       "feature2": "Open-concept living spaces",
-      "feature3": "Thoughtful storage solutions"
+      "feature3": "Thoughtful storage solutions",
+      "items": {
+        "edifPremium": "PREMIUM BUILDING",
+        "terrazaPh": "PENTHOUSE TERRACE",
+        "patio1erNivel": "1ST LEVEL PATIO",
+        "vistaInterior": "INTERIOR VIEW",
+        "edifResidence": "RESIDENCE BUILDING"
+      }
     }
   },
   "common": {

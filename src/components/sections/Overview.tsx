@@ -7,22 +7,34 @@ export default function Overview() {
 
   const overviewItems = [
     {
-      id: "master-bedroom",
+      id: "edif-premium",
       image:
-        "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
-      title: "Master Bedroom",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409409/7_mrjkmj.png",
+      title: t("items.edifPremium"),
     },
     {
-      id: "bathroom",
+      id: "terraza-ph",
       image:
-        "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg",
-      title: "Bathroom",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409447/15_zo8u0b.png",
+      title: t("items.terrazaPh"),
     },
     {
-      id: "kitchen",
+      id: "patio-1er-nivel",
       image:
-        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
-      title: "Kitchen",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409591/4_kssl2x.png",
+      title: t("items.patio1erNivel"),
+    },
+    {
+      id: "vista-interior",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409672/3_u9nij0.png",
+      title: t("items.vistaInterior"),
+    },
+    {
+      id: "edif-residence",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409620/5_apdyyx.png",
+      title: t("items.edifResidence"),
     },
   ];
 

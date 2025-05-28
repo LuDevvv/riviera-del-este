@@ -88,8 +88,8 @@ const nextConfig: NextConfig = {
   // Image optimization - configuración más agresiva
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 828, 1200, 1920], // Reducido
-    imageSizes: [32, 64, 128, 256], // Reducido
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [32, 64, 128, 256],
     remotePatterns: [
       {
         protocol: "https",
@@ -97,15 +97,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
-        port: "",
-        pathname: "/**",
-      },
     ],
     minimumCacheTTL: 86400,
     dangerouslyAllowSVG: true,
+    // Aumentar timeout a 30s
+    unoptimized: false,
+    loader: "default",
   },
 
   // Logging config

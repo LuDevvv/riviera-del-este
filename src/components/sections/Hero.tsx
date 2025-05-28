@@ -25,8 +25,8 @@ export default function Hero() {
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
       <VideoBackground
-        src="https://res.cloudinary.com/dcuapqoii/video/upload/v1748036698/Adjustment_Layer1_1_inqowt.mp4"
-        poster="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg"
+        src="https://res.cloudinary.com/dcuapqoii/video/upload/v1748444352/Adjustment_Layer1_1_m0o0rd.mp4"
+        poster="https://res.cloudinary.com/dcuapqoii/image/upload/v1748404975/18_iy0cos.png"
         title={t("headline")}
       />
 

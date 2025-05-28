@@ -44,7 +44,7 @@ export default function Properties() {
       hasPatio: true,
       isLimitedUnits: false,
       image:
-        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409672/3_u9nij0.png",
     },
     {
       id: "tipo-a-3er-piso",
@@ -56,7 +56,7 @@ export default function Properties() {
       type: "residences",
       isLimitedUnits: false,
       image:
-        "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409447/15_zo8u0b.png",
     },
     {
       id: "tipo-a-4to-piso-terraza",
@@ -69,7 +69,7 @@ export default function Properties() {
       hasTerraza: true,
       isLimitedUnits: true,
       image:
-        "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404979/7_sdb0sy.png",
     },
     {
       id: "tipo-b-3-habs",
@@ -81,7 +81,7 @@ export default function Properties() {
       type: "residences",
       isLimitedUnits: false,
       image:
-        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404979/7_sdb0sy.png",
     },
     {
       id: "tipo-d-1er-piso-patio",
@@ -94,7 +94,7 @@ export default function Properties() {
       hasPatio: true,
       isLimitedUnits: true,
       image:
-        "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409591/4_kssl2x.png",
     },
     {
       id: "penthouse-4to-piso",
@@ -108,7 +108,8 @@ export default function Properties() {
       hasEstudio: true,
       isPenthouse: true,
       isLimitedUnits: true,
-      image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404979/7_sdb0sy.png",
     },
   ];
 

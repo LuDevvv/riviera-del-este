@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { useMediaQuery } from "@hooks/useMediaQuery";
 
 interface VideoBackgroundProps {
   src: string;
@@ -18,89 +17,82 @@ export default function VideoBackground({
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
   const [hasError, setHasError] = useState(false);
-
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const prefersReducedMotion = useMediaQuery(
-    "(prefers-reduced-motion: reduce)"
-  );
 
   const handleCanPlay = useCallback(() => {
     setIsLoaded(true);
-    if (!prefersReducedMotion && !isMobile) {
-      setShowVideo(true);
-      videoRef.current?.play().catch(() => setHasError(true));
+    // Intentar reproducir automáticamente
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        setHasError(true);
+      });
     }
-  }, [prefersReducedMotion, isMobile]);
+  }, []);
 
   const handleError = useCallback(() => {
     setHasError(true);
-    setShowVideo(false);
   }, []);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Solo cargar video en desktop y si no hay preferencia por movimiento reducido
-    if (isMobile || prefersReducedMotion) {
-      setShowVideo(false);
-      return;
-    }
-
     // Verificar conexión de red
     const connection = (navigator as any).connection;
-    if (
+
+    const isSlowConnection =
       connection &&
-      (connection.effectiveType === "2g" || connection.effectiveType === "3g")
-    ) {
-      setShowVideo(false);
+      (connection.effectiveType === "2g" ||
+        connection.effectiveType === "slow-2g" ||
+        connection.downlink < 1.5);
+
+    if (isSlowConnection) {
+      setHasError(true);
       return;
     }
 
     // Configurar video
-    video.preload = "metadata";
+    video.preload = "metadata"; // Usar metadata para conexiones normales
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
     video.poster = poster;
 
+    // Cargar video con delay para conexiones lentas
+    const timer = setTimeout(
+      () => {
+        video.src = src;
+      },
+      isSlowConnection ? 2000 : 500
+    );
+
     video.addEventListener("canplay", handleCanPlay);
     video.addEventListener("error", handleError);
-
-    // Lazy load del video después de un delay
-    const timer = setTimeout(() => {
-      video.src = src;
-    }, 1000);
 
     return () => {
       clearTimeout(timer);
       video.removeEventListener("canplay", handleCanPlay);
       video.removeEventListener("error", handleError);
     };
-  }, [src, poster, isMobile, prefersReducedMotion, handleCanPlay, handleError]);
+  }, [src, poster, handleCanPlay, handleError]);
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
-      {/* Poster image - always shown as fallback */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${poster})` }}
       />
-
-      {/* Video - only on desktop with good connection */}
-      {showVideo && !hasError && (
-        <video
-          ref={videoRef}
-          aria-label={title}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          }`}
-        />
-      )}
-
-      {/* Dark overlay */}
+      <video
+        ref={videoRef}
+        aria-label={title}
+        muted
+        loop
+        playsInline
+        autoPlay
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          isLoaded && !hasError ? "opacity-100" : "opacity-0"
+        }`}
+      />
       <div className="absolute inset-0 bg-black/50" />
     </div>
   );

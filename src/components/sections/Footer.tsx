@@ -36,7 +36,7 @@ export default function Footer() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg"
+          src="https://res.cloudinary.com/dcuapqoii/image/upload/v1748404986/1_xwydtj.png"
           alt="Background"
           fill
           className="object-cover object-center"

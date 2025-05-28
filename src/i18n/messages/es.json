@@ -140,7 +140,14 @@
       "description": "Perfecto para familias, parejas y profesionales este apartamento combina comodidad, conveniencia y un estilo moderno.",
       "feature1": "Acabados premium y electrodomésticos modernos",
       "feature2": "Espacios de vida de concepto abierto",
-      "feature3": "Soluciones de almacenamiento inteligentes"
+      "feature3": "Soluciones de almacenamiento inteligentes",
+      "items": {
+        "edifPremium": "EDIF. PREMIUM",
+        "terrazaPh": "TERRAZA PH",
+        "patio1erNivel": "PATIO 1ER NIVEL",
+        "vistaInterior": "VISTA INTERIOR",
+        "edifResidence": "EDIF. RESIDENCE"
+      }
     }
   },
   "common": {

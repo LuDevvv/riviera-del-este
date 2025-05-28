@@ -14,56 +14,183 @@ export default function Gallery() {
 
   const galleryItems = [
     {
-      id: "kitchen",
+      id: "interior-1",
       image:
-        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
-      title: "Modern Kitchen",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404860/20_ryjnxq.png",
       category: "interior",
     },
     {
-      id: "bedroom",
+      id: "interior-2",
       image:
-        "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
-      title: "Master Bedroom",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404859/28_p8wsq7.png",
       category: "interior",
     },
     {
-      id: "bathroom",
+      id: "interior-3",
       image:
-        "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg",
-      title: "Luxury Bathroom",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404855/19_nqm6zq.png",
       category: "interior",
     },
     {
-      id: "exterior1",
-      image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
-      title: "Building Exterior",
+      id: "interior-4",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404855/26_sneq4l.png",
+      category: "interior",
+    },
+    {
+      id: "interior-5",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404851/24_wa6ukv.png",
+      category: "interior",
+    },
+    {
+      id: "interior-6",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404849/27_eglygn.png",
+      category: "interior",
+    },
+    {
+      id: "interior-7",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404849/21_grblwz.png",
+      category: "interior",
+    },
+    {
+      id: "interior-8",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404849/30_tepkfk.png",
+      category: "interior",
+    },
+    {
+      id: "interior-9",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404846/23_tlgckx.png",
+      category: "interior",
+    },
+    {
+      id: "interior-10",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404839/22_vakajx.png",
+      category: "interior",
+    },
+    {
+      id: "interior-11",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404838/32_gifqib.png",
+      category: "interior",
+    },
+    {
+      id: "interior-12",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404838/3_hgtsro.png",
+      category: "interior",
+    },
+    {
+      id: "interior-13",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404834/31_ycdtxk.png",
+      category: "interior",
+    },
+
+    {
+      id: "interior-14",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404830/33_usmyys.png",
+      category: "interior",
+    },
+
+    {
+      id: "interior-15",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404830/29_rkwdio.png",
+      category: "interior",
+    },
+    {
+      id: "exterior-1",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748405009/25_xjhv0i.png",
       category: "exterior",
     },
     {
-      id: "exterior2",
+      id: "exterior-2",
       image:
-        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
-      title: "Garden View",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748405005/16_pwyn5g.png",
       category: "exterior",
     },
     {
-      id: "pool",
+      id: "exterior-3",
       image:
-        "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg",
-      title: "Swimming Pool",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748405003/9_jodkkp.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-4",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748405003/15_lpm9ir.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-5",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748405002/11_lfrori.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-6",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748405000/4_izeawj.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-7",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404995/2_tmluug.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-8",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404982/17_b8esiz.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-9",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404977/10_b0xosz.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-10",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404975/18_iy0cos.png",
+      category: "exterior",
+    },
+    {
+      id: "exterior-11",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404974/34_uxkcf4.png",
+      category: "exterior",
+    },
+    {
+      id: "facilities-1",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409905/14_xpjwhg.png",
       category: "facilities",
     },
     {
-      id: "gym",
+      id: "facilities-2",
       image:
-        "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg",
-      title: "Fitness Center",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748409881/13_vuxlg0.png",
+      category: "facilities",
+    },
+    {
+      id: "facilities-3",
+      image:
+        "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404987/12_u2jqa8.png",
       category: "facilities",
     },
   ];
 
-  // Filter options for the tabs
   const filterOptions: FilterOption<
     "all" | "exterior" | "interior" | "facilities"
   >[] = [
@@ -73,7 +200,6 @@ export default function Gallery() {
     { value: "facilities", label: t("facilities") },
   ];
 
-  // Filter items based on active filter
   const filteredItems =
     activeFilter === "all"
       ? galleryItems
@@ -82,7 +208,6 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-20 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
-        {/* Header Section */}
         <AnimatedSection animation="fadeIn" threshold={0.3}>
           <div className="flex justify-center mb-4">
             <span className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-semibold">
@@ -103,24 +228,20 @@ export default function Gallery() {
           </p>
         </AnimatedSection>
 
-        {/* Filter Tabs */}
         <AnimatedSection
           animation="scaleIn"
           delay={600}
           threshold={0.3}
           className="mb-8 flex justify-center items-center"
         >
-          <div>
-            <FilterTabs
-              options={filterOptions}
-              activeFilter={activeFilter}
-              onFilterChange={setActiveFilter}
-              variant="secondary"
-            />
-          </div>
+          <FilterTabs
+            options={filterOptions}
+            activeFilter={activeFilter}
+            onFilterChange={setActiveFilter}
+            variant="secondary"
+          />
         </AnimatedSection>
 
-        {/* Image Slider */}
         <AnimatedSection animation="fadeIn" delay={800} threshold={0.2}>
           <ImageSlider
             items={filteredItems}
