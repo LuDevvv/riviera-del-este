@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import Image from "next/image";
 
 interface VideoBackgroundProps {
   src: string;
@@ -18,79 +17,147 @@ export default function VideoBackground({
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [shouldPlayVideo, setShouldPlayVideo] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
-  // Detect slow connections and mobile
-  const isSlowConnection = useCallback(() => {
-    const connection = (navigator as any).connection;
-    const isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
+  // Evaluar si debe cargar video basado en conexión
+  const shouldLoadVideoBasedOnConnection = useCallback((): boolean => {
+    // Verificar Network Information API
+    const connection =
+      (navigator as any).connection ||
+      (navigator as any).mozConnection ||
+      (navigator as any).webkitConnection;
 
-    return (
-      isMobile ||
-      (connection &&
-        (connection.effectiveType === "2g" ||
-          connection.effectiveType === "slow-2g" ||
-          connection.downlink < 2))
-    );
+    if (connection) {
+      const { effectiveType, saveData, downlink } = connection;
+
+      // No cargar si está activado el ahorro de datos
+      if (saveData) return false;
+
+      // No cargar en conexiones muy lentas
+      if (effectiveType === "slow-2g" || effectiveType === "2g") return false;
+
+      // Para 3G, verificar ancho de banda
+      if (effectiveType === "3g" && downlink && downlink < 1.5) return false;
+
+      // Si hay información de ancho de banda muy bajo
+      if (downlink && downlink < 1) return false;
+    }
+
+    // Si no hay información de conexión, permitir carga
+    // (mejor experiencia por defecto)
+    return true;
   }, []);
 
+  // Detectar si debe cargar video
   useEffect(() => {
-    // Only load video on fast connections and after initial load
-    const timer = setTimeout(() => {
-      if (!isSlowConnection()) {
-        setShouldPlayVideo(true);
-      }
-    }, 1000); // Delay video loading
+    const canLoadVideo = shouldLoadVideoBasedOnConnection();
 
-    return () => clearTimeout(timer);
-  }, [isSlowConnection]);
+    if (canLoadVideo) {
+      const timer = setTimeout(() => {
+        setShouldLoadVideo(true);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [shouldLoadVideoBasedOnConnection]);
+
+  // Escuchar cambios en la conexión
+  useEffect(() => {
+    const connection =
+      (navigator as any).connection ||
+      (navigator as any).mozConnection ||
+      (navigator as any).webkitConnection;
+
+    if (!connection) return;
+
+    const handleConnectionChange = () => {
+      const canLoadVideo = shouldLoadVideoBasedOnConnection();
+
+      // Si la conexión mejora y no estaba cargando video, empezar a cargarlo
+      if (canLoadVideo && !shouldLoadVideo) {
+        setShouldLoadVideo(true);
+      }
+    };
+
+    connection.addEventListener("change", handleConnectionChange);
+    return () =>
+      connection.removeEventListener("change", handleConnectionChange);
+  }, [shouldLoadVideoBasedOnConnection, shouldLoadVideo]);
 
   const handleCanPlay = useCallback(() => {
     setIsLoaded(true);
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Fallback to poster image
+      videoRef.current.play().catch((error) => {
+        console.error("Video play error:", error);
       });
     }
   }, []);
 
+  useEffect(() => {
+    if (!shouldLoadVideo) return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Configurar video
+    video.preload = "metadata";
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    // Atributos adicionales para mejor compatibilidad móvil
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
+
+    video.src = src;
+    video.load();
+
+    // Event listeners
+    const handleLoadedData = () => {
+      // Video data loaded
+    };
+
+    const handleError = (e: Event) => {
+      console.error("Video error:", e);
+    };
+
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("loadeddata", handleLoadedData);
+    video.addEventListener("error", handleError);
+
+    return () => {
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("loadeddata", handleLoadedData);
+      video.removeEventListener("error", handleError);
+    };
+  }, [shouldLoadVideo, src, handleCanPlay]);
+
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
-      {/* Optimized poster image - always visible */}
-      <Image
-        src={poster}
-        alt={title}
-        fill
-        priority
-        quality={75}
-        className="object-cover"
-        sizes="100vw"
-        placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+      {/* Imagen de fondo siempre visible */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${poster})` }}
       />
 
-      {/* Video - only on fast connections */}
-      {shouldPlayVideo && (
+      {/* Video solo si debe cargarse */}
+      {shouldLoadVideo && (
         <video
           ref={videoRef}
           aria-label={title}
           muted
           loop
           playsInline
-          preload="none"
-          onCanPlay={handleCanPlay}
+          webkit-playsinline="true"
+          x5-playsinline="true"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
-        >
-          <source src={src} type="video/mp4" />
-        </video>
+        />
       )}
 
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50" />
     </div>
   );
 }
