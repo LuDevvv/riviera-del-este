@@ -10,12 +10,12 @@ export default function Location() {
 
   // Real coordinates from Google Maps
   const buildingImage =
-    "https://res.cloudinary.com/dcuapqoii/image/upload/v1748404986/1_xwydtj.png";
+    "https://res.cloudinary.com/dcuapqoii/image/upload/w_600,q_70,f_auto,c_fill/v1748404986/1_xwydtj.png";
   const googleMapsUrl =
     "https://www.google.com/maps/place/18%C2%B027'00.7%22N+69%C2%B019'24.0%22W/@18.4506609,-69.3237455,17.61z/data=!4m4!3m3!8m2!3d18.4501944!4d-69.3233333?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D";
 
   return (
-    <section id="location" className="py-16 bg-white">
+    <section id="location" className="py-12 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
         <div className="flex justify-center mb-4">
           <span className="bg-gray-100 text-gray-800 px-6 py-2 rounded-full text-sm font-semibold">

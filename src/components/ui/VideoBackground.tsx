@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 
 interface VideoBackgroundProps {
   src: string;
@@ -17,83 +18,79 @@ export default function VideoBackground({
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [shouldPlayVideo, setShouldPlayVideo] = useState(false);
+
+  // Detect slow connections and mobile
+  const isSlowConnection = useCallback(() => {
+    const connection = (navigator as any).connection;
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+    return (
+      isMobile ||
+      (connection &&
+        (connection.effectiveType === "2g" ||
+          connection.effectiveType === "slow-2g" ||
+          connection.downlink < 2))
+    );
+  }, []);
+
+  useEffect(() => {
+    // Only load video on fast connections and after initial load
+    const timer = setTimeout(() => {
+      if (!isSlowConnection()) {
+        setShouldPlayVideo(true);
+      }
+    }, 1000); // Delay video loading
+
+    return () => clearTimeout(timer);
+  }, [isSlowConnection]);
 
   const handleCanPlay = useCallback(() => {
     setIsLoaded(true);
-    // Intentar reproducir automáticamente
     if (videoRef.current) {
-      videoRef.current.play().catch((error) => {
-        setHasError(true);
+      videoRef.current.play().catch(() => {
+        // Fallback to poster image
       });
     }
   }, []);
 
-  const handleError = useCallback(() => {
-    setHasError(true);
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Verificar conexión de red
-    const connection = (navigator as any).connection;
-
-    const isSlowConnection =
-      connection &&
-      (connection.effectiveType === "2g" ||
-        connection.effectiveType === "slow-2g" ||
-        connection.downlink < 1.5);
-
-    if (isSlowConnection) {
-      setHasError(true);
-      return;
-    }
-
-    // Configurar video
-    video.preload = "metadata"; // Usar metadata para conexiones normales
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.poster = poster;
-
-    // Cargar video con delay para conexiones lentas
-    const timer = setTimeout(
-      () => {
-        video.src = src;
-      },
-      isSlowConnection ? 2000 : 500
-    );
-
-    video.addEventListener("canplay", handleCanPlay);
-    video.addEventListener("error", handleError);
-
-    return () => {
-      clearTimeout(timer);
-      video.removeEventListener("canplay", handleCanPlay);
-      video.removeEventListener("error", handleError);
-    };
-  }, [src, poster, handleCanPlay, handleError]);
-
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${poster})` }}
+      {/* Optimized poster image - always visible */}
+      <Image
+        src={poster}
+        alt={title}
+        fill
+        priority
+        quality={75}
+        className="object-cover"
+        sizes="100vw"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
       />
-      <video
-        ref={videoRef}
-        aria-label={title}
-        muted
-        loop
-        playsInline
-        autoPlay
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-          isLoaded && !hasError ? "opacity-100" : "opacity-0"
-        }`}
-      />
-      <div className="absolute inset-0 bg-black/50" />
+
+      {/* Video - only on fast connections */}
+      {shouldPlayVideo && (
+        <video
+          ref={videoRef}
+          aria-label={title}
+          muted
+          loop
+          playsInline
+          preload="none"
+          onCanPlay={handleCanPlay}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      )}
+
+      <div className="absolute inset-0 bg-black/40" />
     </div>
   );
 }

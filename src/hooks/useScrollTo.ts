@@ -15,7 +15,7 @@ export function useScrollTo() {
       if (lenis) {
         // Use Lenis for smooth scrolling
         lenis.scrollTo(`#${sectionId}`, {
-          offset: -80, // Adjust for navbar height
+          offset: -70,
           duration: 1.2,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         });
@@ -23,7 +23,13 @@ export function useScrollTo() {
         // Fallback if Lenis is not available
         const section = document.getElementById(sectionId);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
+          const rect = section.getBoundingClientRect();
+          const offsetPosition = window.pageYOffset + rect.top + -70;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
         }
       }
     },

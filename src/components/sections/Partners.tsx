@@ -12,17 +12,17 @@ const PARTNERS = [
   {
     id: "novaforza",
     name: "NovaForza",
-    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/v1748037716/123_lps2yb.png",
+    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/w_200,q_80,f_auto/v1748037716/123_lps2yb.png",
   },
   {
     id: "casalina",
     name: "Casalina",
-    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/v1748037716/LOGO-12_zzdft1.png",
+    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/w_200,q_80,f_auto/v1748037716/LOGO-12_zzdft1.png",
   },
   {
     id: "riviera-del-este",
     name: "Riviera Del Este",
-    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/v1748037715/gria_hlzos8.png",
+    logo: "https://res.cloudinary.com/dcuapqoii/image/upload/w_200,q_80,f_auto/v1748037715/gria_hlzos8.png",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Partners() {
   ];
 
   return (
-    <section className="py-12 md:py-16 bg-white">
+    <section className="py-12 bg-white">
       <div className="container mx-auto px-4 max-w-[1300px]">
         <AnimatedSection animation="fadeIn" threshold={0.3}>
           <div className="flex justify-center mb-6 md:mb-8">

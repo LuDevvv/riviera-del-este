@@ -48,9 +48,11 @@ export default function AnimatedSection({
   const { ref, isVisible } = useIntersectionObserver({
     threshold,
     triggerOnce: true,
+    rootMargin: "100px", // Activar 100px antes de que sea visible
   });
 
   const animationConfig = animations[animation];
+
   const durationClass =
     duration === 300
       ? "duration-300"
@@ -69,9 +71,11 @@ export default function AnimatedSection({
         ? "delay-200"
         : delay === 300
           ? "delay-300"
-          : delay === 500
-            ? "delay-500"
-            : "";
+          : delay === 400
+            ? "delay-[400ms]"
+            : delay === 500
+              ? "delay-500"
+              : "";
 
   return React.createElement(
     Component,
@@ -81,6 +85,7 @@ export default function AnimatedSection({
         ${animationConfig.transition}
         ${durationClass}
         ${delayClass}
+        ease-out
         ${isVisible ? animationConfig.animate : animationConfig.initial}
         ${className}
       `.trim(),
@@ -106,6 +111,7 @@ export function AnimatedList({
   const { ref, isVisible } = useIntersectionObserver({
     threshold,
     triggerOnce: true,
+    rootMargin: "50px", // Activar antes
   });
 
   const animationConfig = animations[animation];
@@ -118,6 +124,7 @@ export function AnimatedList({
           className={`
             ${animationConfig.transition}
             duration-700
+            ease-out
             ${isVisible ? animationConfig.animate : animationConfig.initial}
           `.trim()}
           style={{

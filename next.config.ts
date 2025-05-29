@@ -58,34 +58,9 @@ const nextConfig: NextConfig = {
         },
       ],
     },
-    // Silenciar DevTools requests
-    {
-      source: "/.well-known/:path*",
-      headers: [
-        {
-          key: "Cache-Control",
-          value: "public, max-age=3600",
-        },
-      ],
-    },
   ],
 
-  // Redirects para rutas comunes que causan 404
-  redirects: async () => [
-    {
-      source: "/favicon.ico",
-      destination: "/favicon.ico",
-      permanent: true,
-      missing: [
-        {
-          type: "header",
-          key: "x-favicon-redirect",
-        },
-      ],
-    },
-  ],
-
-  // Image optimization - configuración más agresiva
+  // Image optimization - SIN loader personalizado
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 828, 1200, 1920],
@@ -100,16 +75,6 @@ const nextConfig: NextConfig = {
     ],
     minimumCacheTTL: 86400,
     dangerouslyAllowSVG: true,
-    // Aumentar timeout a 30s
-    unoptimized: false,
-    loader: "default",
-  },
-
-  // Logging config
-  logging: {
-    fetches: {
-      fullUrl: false,
-    },
   },
 
   // Compress

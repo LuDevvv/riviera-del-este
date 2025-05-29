@@ -10,7 +10,7 @@ interface UseIntersectionObserverProps {
 
 export function useIntersectionObserver({
   threshold = 0.1,
-  rootMargin = "50px",
+  rootMargin = "50px", // Por defecto activar antes
   triggerOnce = true,
 }: UseIntersectionObserverProps = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -32,7 +32,7 @@ export function useIntersectionObserver({
       },
       {
         threshold,
-        rootMargin,
+        rootMargin, // Margen para activar antes
       }
     );
 

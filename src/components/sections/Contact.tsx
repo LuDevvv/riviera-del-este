@@ -364,7 +364,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-14 b-14 md:py-16 bg-white">
+    <section id="contact" className="py-12 bg-white">
       <div className="container mx-auto px-4 max-w-[1000px]">
         {/* Header Section */}
         <AnimatedSection animation="fadeIn" threshold={0.3}>

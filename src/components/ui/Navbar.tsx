@@ -120,6 +120,7 @@ export default function Navbar() {
                       >
                         <a
                           href={`#${item}`}
+                          onClick={(e) => handleNavClick(item, e)}
                           className="text-base font-medium text-gray-800"
                         >
                           {t(item)}
