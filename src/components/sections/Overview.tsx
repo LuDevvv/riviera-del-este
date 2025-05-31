@@ -8,31 +8,31 @@ export default function Overview() {
     {
       id: "edif-premium",
       image:
-        "https://res.cloudinary.com/dcuapqoii/image/upload/w_900,q_70,f_auto,c_fill/v1748409409/7_mrjkmj.png",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/w_1400,f_auto,q_90/v1748409409/7_mrjkmj.png",
       title: t("items.edifPremium"),
     },
     {
       id: "terraza-ph",
       image:
-        "https://res.cloudinary.com/dcuapqoii/image/upload/w_900,q_70,f_auto,c_fill/v1748409447/15_zo8u0b.png",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/w_1400,f_auto,q_90/v1748409447/15_zo8u0b.png",
       title: t("items.terrazaPh"),
     },
     {
       id: "patio-1er-nivel",
       image:
-        "https://res.cloudinary.com/dcuapqoii/image/upload/w_900,q_70,f_auto,c_fill/v1748409591/4_kssl2x.png",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/w_1400,f_auto,q_90/v1748409591/4_kssl2x.png",
       title: t("items.patio1erNivel"),
     },
     {
       id: "vista-interior",
       image:
-        "https://res.cloudinary.com/dcuapqoii/image/upload/w_900,q_70,f_auto,c_fill/v1748409672/3_u9nij0.png",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/w_1400,f_auto,q_90/v1748409672/3_u9nij0.png",
       title: t("items.vistaInterior"),
     },
     {
       id: "edif-residence",
       image:
-        "https://res.cloudinary.com/dcuapqoii/image/upload/w_900,q_70,f_auto,c_fill/v1748409620/5_apdyyx.png",
+        "https://res.cloudinary.com/dcuapqoii/image/upload/w_1400,f_auto,q_90/v1748409620/5_apdyyx.png",
       title: t("items.edifResidence"),
     },
   ];

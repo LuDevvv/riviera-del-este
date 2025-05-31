@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import Image from "next/image";
 
@@ -23,7 +22,6 @@ interface ImageSliderProps {
   showGradients?: boolean;
   gradientColor?: string;
   backgroundColor?: string;
-  showPagination?: boolean;
   showPlayPause?: boolean;
 }
 
@@ -35,14 +33,59 @@ export function ImageSlider({
   showGradients = true,
   gradientColor = "primary",
   backgroundColor = "",
-  showPagination = false,
   showPlayPause = false,
 }: ImageSliderProps) {
   const [swiperRef, setSwiperRef] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(
+    new Set([0, 1, 2])
+  ); // Preload first 3
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+  // Preload images effect
+  useEffect(() => {
+    const preloadImages = () => {
+      items.forEach((item, index) => {
+        if (index < 5) {
+          // Preload first 5 images immediately
+          const img = new window.Image();
+          img.src = item.image;
+          img.onload = () => {
+            setLoadedImages((prev) => new Set([...prev, index]));
+          };
+        }
+      });
+    };
+
+    preloadImages();
+  }, [items]);
+
+  // Preload adjacent images when slide changes
+  useEffect(() => {
+    const preloadAdjacent = (index: number) => {
+      const toPreload = [
+        index - 1 >= 0 ? index - 1 : items.length - 1, // Previous
+        index, // Current
+        index + 1 < items.length ? index + 1 : 0, // Next
+        index + 2 < items.length ? index + 2 : (index + 2) % items.length, // Next+1
+      ];
+
+      toPreload.forEach((i) => {
+        if (!loadedImages.has(i)) {
+          const img = new window.Image();
+          img.src = items[i].image;
+          img.onload = () => {
+            setLoadedImages((prev) => new Set([...prev, i]));
+          };
+        }
+      });
+    };
+
+    preloadAdjacent(activeIndex);
+  }, [activeIndex, items, loadedImages]);
 
   const handleSwiperInit = (swiper: any) => {
     setSwiperRef(swiper);
@@ -54,6 +97,10 @@ export function ImageSlider({
       swiper.navigation.init();
       swiper.navigation.update();
     }
+  };
+
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.realIndex);
   };
 
   const toggleAutoplay = () => {
@@ -135,8 +182,10 @@ export function ImageSlider({
       <Swiper
         modules={[Navigation, Autoplay]}
         onSwiper={handleSwiperInit}
+        onSlideChange={handleSlideChange}
         loop={true}
         centeredSlides={true}
+        watchSlidesProgress={true}
         autoplay={
           autoPlay
             ? {
@@ -148,6 +197,7 @@ export function ImageSlider({
         }
         spaceBetween={20}
         slidesPerView={1}
+        speed={600} // Faster transition
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -161,19 +211,30 @@ export function ImageSlider({
         {items.map((item, index) => (
           <SwiperSlide key={item.id} className="relative">
             <div className="relative w-full h-full rounded-lg overflow-hidden shadow-xl bg-gray-100">
+              {/* Loading skeleton - only show if image not loaded */}
+              {!loadedImages.has(index) && (
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
+              )}
+
               <Image
                 src={item.image}
                 alt={item.title || `Slide ${index + 1}`}
                 fill
-                className="object-cover transition-transform duration-700 hover:scale-105"
+                className={`object-cover transition-all duration-500 ${
+                  loadedImages.has(index)
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-105"
+                }`}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 85vw"
-                priority={index < 2}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                priority={index < 3} // Priority for first 3 images
+                quality={90} // Higher quality since images are already optimized
+                onLoad={() => {
+                  setLoadedImages((prev) => new Set([...prev, index]));
+                }}
               />
 
               {/* Image overlay with title */}
-              {item.title && (
+              {item.title && loadedImages.has(index) && (
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-white text-lg md:text-xl lg:text-2xl font-medium drop-shadow-lg">
@@ -182,12 +243,6 @@ export function ImageSlider({
                   </div>
                 </div>
               )}
-
-              {/* Loading state */}
-              <div
-                className="absolute inset-0 bg-gray-200 animate-pulse"
-                style={{ zIndex: -1 }}
-              />
             </div>
           </SwiperSlide>
         ))}
