@@ -12,15 +12,33 @@ export class EmailService {
   private resend: Resend;
 
   constructor() {
+    console.log("📧 Email Service Debug:", {
+      RESEND_API_KEY_SET: !!process.env.RESEND_API_KEY,
+      RESEND_API_KEY_LENGTH: process.env.RESEND_API_KEY?.length,
+      EMAIL_FROM: process.env.EMAIL_FROM,
+      EMAIL_TO: process.env.EMAIL_TO,
+      RESEND_API_KEY_PREFIX: process.env.RESEND_API_KEY?.substring(0, 8),
+    });
+
     if (!process.env.RESEND_API_KEY) {
-      throw new Error("Resend API Key no configurada");
+      throw new Error("RESEND_API_KEY no configurada");
     }
+
     this.resend = new Resend(process.env.RESEND_API_KEY);
   }
 
   async sendContactEmail(data: ContactData) {
+    console.log("📤 Intentando enviar email...", {
+      timestamp: new Date().toISOString(),
+      from: process.env.EMAIL_FROM,
+      to: process.env.EMAIL_TO,
+      customerName: data.name,
+      customerEmail: data.email,
+    });
+
     const validationResult = ContactSchema.safeParse(data);
     if (!validationResult.success) {
+      console.error("❌ Validation error:", validationResult.error.errors);
       return {
         success: false,
         error: validationResult.error.errors,
@@ -28,35 +46,71 @@ export class EmailService {
     }
 
     try {
-      const { error } = await this.resend.emails.send({
+      const emailPayload = {
         from: process.env.EMAIL_FROM!,
         to: process.env.EMAIL_TO!,
         replyTo: data.email,
         subject: `Nuevo Contacto - ${data.name}`,
         html: this.createEmailTemplate(data),
+      };
+
+      console.log("📧 Email payload:", {
+        from: emailPayload.from,
+        to: emailPayload.to,
+        subject: emailPayload.subject,
+        replyTo: emailPayload.replyTo,
+        htmlLength: emailPayload.html.length,
       });
 
+      const { data: result, error } =
+        await this.resend.emails.send(emailPayload);
+
       if (error) {
-        console.error("Error enviando email:", error);
+        console.error("❌ Resend API Error:", {
+          error,
+          errorMessage: error.message,
+          errorName: error.name,
+          timestamp: new Date().toISOString(),
+        });
+
         return {
           success: false,
-          error: error,
+          error: {
+            message: error.message,
+            name: error.name,
+            details: error,
+          },
         };
       }
 
+      console.log("✅ Email enviado exitosamente:", {
+        emailId: result?.id,
+        timestamp: new Date().toISOString(),
+      });
+
       return {
         success: true,
+        data: result,
       };
     } catch (err: any) {
-      console.error("Error en servicio de email:", err);
+      console.error("❌ Error crítico:", {
+        message: err.message,
+        stack: err.stack,
+        name: err.name,
+        timestamp: new Date().toISOString(),
+      });
+
       return {
         success: false,
-        error: err instanceof Error ? err.message : "Error desconocido",
+        error: {
+          message: err.message || "Error desconocido",
+          type: "CRITICAL_ERROR",
+        },
       };
     }
   }
 
-  // Función para formatear hora a 12hr
+  // Resto de métodos sin cambios...
   private formatTimeTo12Hour(time: string): string {
     const [hour, minute] = time.split(":");
     const hourNum = parseInt(hour);
@@ -130,11 +184,12 @@ export class EmailService {
                 </td>
               </tr>
 
-              <!-- Footer -->
+              <!-- Footer con debug info -->
               <tr>
                 <td style="background-color:#f4f4f4;padding:15px;text-align:center;font-size:12px;color:#777;">
                   <p style="margin:0;">Riviera del Este</p>
                   <p style="margin:5px 0 0;">Calle Santos Alcalá, San Pedro de Macorís 21000</p>
+                  <p style="margin:5px 0 0;">Enviado: ${new Date().toISOString()}</p>
                 </td>
               </tr>
 
@@ -148,9 +203,8 @@ export class EmailService {
   }
 
   private formatDate(dateString: string): string {
-    // Parse date correctly to avoid timezone issues
     const [year, month, day] = dateString.split("-").map(Number);
-    const date = new Date(year, month - 1, day); // month is 0-indexed
+    const date = new Date(year, month - 1, day);
 
     return date.toLocaleDateString("es-ES", {
       weekday: "long",

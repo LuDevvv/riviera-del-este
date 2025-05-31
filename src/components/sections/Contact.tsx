@@ -17,7 +17,6 @@ import {
 import AnimatedSection from "@components/ui/AnimatedSection";
 import { useLocale } from "next-intl";
 
-// Simple Calendar Component
 interface SimpleCalendarProps {
   onDateSelect: (date: Date) => void;
   selectedDate?: Date;
@@ -591,7 +590,6 @@ export default function Contact() {
                   )}
                 </button>
 
-                {/* Status Messages */}
                 {submitStatus === "success" && (
                   <div
                     className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 p-4 rounded-lg mt-4 w-full shadow-sm"
@@ -614,13 +612,12 @@ export default function Contact() {
                       <div>
                         <p className="font-medium">{t("success")}</p>
                         <p className="text-sm text-green-600 mt-1">
-                          Te contactaremos pronto
+                          {t("successDescription")}
                         </p>
                       </div>
                     </div>
                   </div>
                 )}
-
                 {submitStatus === "error" && (
                   <div
                     className="bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 text-red-800 p-4 rounded-lg mt-4 w-full shadow-sm"
@@ -643,7 +640,7 @@ export default function Contact() {
                       <div>
                         <p className="font-medium">{t("error")}</p>
                         <p className="text-sm text-red-600 mt-1">
-                          Intenta nuevamente en unos momentos
+                          {t("retryMessage")}
                         </p>
                       </div>
                     </div>
