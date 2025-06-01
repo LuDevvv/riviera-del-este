@@ -12,14 +12,6 @@ export class EmailService {
   private resend: Resend;
 
   constructor() {
-    console.log("📧 Email Service Debug:", {
-      RESEND_API_KEY_SET: !!process.env.RESEND_API_KEY,
-      RESEND_API_KEY_LENGTH: process.env.RESEND_API_KEY?.length,
-      EMAIL_FROM: process.env.EMAIL_FROM,
-      EMAIL_TO: process.env.EMAIL_TO,
-      RESEND_API_KEY_PREFIX: process.env.RESEND_API_KEY?.substring(0, 8),
-    });
-
     if (!process.env.RESEND_API_KEY) {
       throw new Error("RESEND_API_KEY no configurada");
     }
@@ -28,14 +20,6 @@ export class EmailService {
   }
 
   async sendContactEmail(data: ContactData) {
-    console.log("📤 Intentando enviar email...", {
-      timestamp: new Date().toISOString(),
-      from: process.env.EMAIL_FROM,
-      to: process.env.EMAIL_TO,
-      customerName: data.name,
-      customerEmail: data.email,
-    });
-
     const validationResult = ContactSchema.safeParse(data);
     if (!validationResult.success) {
       console.error("❌ Validation error:", validationResult.error.errors);
@@ -53,14 +37,6 @@ export class EmailService {
         subject: `Nuevo Contacto - ${data.name}`,
         html: this.createEmailTemplate(data),
       };
-
-      console.log("📧 Email payload:", {
-        from: emailPayload.from,
-        to: emailPayload.to,
-        subject: emailPayload.subject,
-        replyTo: emailPayload.replyTo,
-        htmlLength: emailPayload.html.length,
-      });
 
       const { data: result, error } =
         await this.resend.emails.send(emailPayload);
@@ -82,11 +58,6 @@ export class EmailService {
           },
         };
       }
-
-      console.log("✅ Email enviado exitosamente:", {
-        emailId: result?.id,
-        timestamp: new Date().toISOString(),
-      });
 
       return {
         success: true,

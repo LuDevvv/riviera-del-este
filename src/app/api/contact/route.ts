@@ -3,21 +3,8 @@ import { emailService } from "@services/mailService";
 import { ContactSchema } from "@lib/types/contact";
 
 export async function POST(request: NextRequest) {
-  console.log("🚀 Contact API iniciada:", {
-    timestamp: new Date().toISOString(),
-    url: request.url,
-  });
-
   try {
     const body = await request.json();
-
-    console.log("📥 Datos recibidos:", {
-      name: body.name,
-      email: body.email,
-      date: body.date,
-      time: body.time,
-      messageLength: body.message?.length,
-    });
 
     // Validación
     const validationResult = ContactSchema.safeParse(body);
@@ -32,16 +19,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log("✅ Validación OK, enviando email...");
-
     // Enviar email
     const result = await emailService.sendContactEmail(body);
-
-    console.log("📧 Resultado del envío:", {
-      success: result.success,
-      error: result.error,
-      timestamp: new Date().toISOString(),
-    });
 
     if (result.success) {
       return NextResponse.json(
