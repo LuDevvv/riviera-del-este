@@ -98,6 +98,7 @@ export class EmailService {
   }
 
   private createEmailTemplate(data: ContactData): string {
+    const hasMessage = data.message && data.message.trim().length > 0;
     const formattedTime = this.formatTimeTo12Hour(data.time);
 
     return `
@@ -137,19 +138,25 @@ export class EmailService {
                       </td>
                       
                       <!-- Contact details -->
-                      <td width="70%" style="vertical-align:top;font-size:14px;color:#333;">
-                        <h3 style="margin:0 0 15px;color:#274e47;">Detalles del Cliente</h3>
-                        <p><strong>Nombre:</strong> ${this.sanitizeHTML(data.name)}</p>
-                        <p><strong>Email:</strong> <a href="mailto:${this.sanitizeHTML(data.email)}" style="color:#274e47;text-decoration:none;">${this.sanitizeHTML(data.email)}</a></p>
-                        <p><strong>Fecha Visita:</strong> ${this.formatDate(data.date)}</p>
-                        <p><strong>Hora Visita:</strong> ${formattedTime}</p>
-                        <div style="margin-top:15px;">
-                          <strong>Mensaje:</strong>
-                          <div style="background-color:#f8f9fa;padding:10px;border-radius:4px;margin-top:5px;">
-                            ${this.sanitizeHTML(data.message)}
-                          </div>
+                    <td width="70%" style="vertical-align:top;font-size:14px;color:#333;">
+                      <h3 style="margin:0 0 15px;color:#274e47;">Detalles del Cliente</h3>
+                      <p><strong>Nombre:</strong> ${this.sanitizeHTML(data.name)}</p>
+                      <p><strong>Email:</strong> <a href="mailto:${this.sanitizeHTML(data.email)}" style="color:#274e47;text-decoration:none;">${this.sanitizeHTML(data.email)}</a></p>
+                      <p><strong>Fecha Visita:</strong> ${this.formatDate(data.date)}</p>
+                      <p><strong>Hora Visita:</strong> ${formattedTime}</p>
+                      ${
+                        hasMessage
+                          ? `
+                      <div style="margin-top:15px;">
+                        <strong>Mensaje:</strong>
+                        <div style="background-color:#f8f9fa;padding:10px;border-radius:4px;margin-top:5px;">
+                          ${this.sanitizeHTML(data.message)}
                         </div>
-                      </td>
+                      </div>
+                      `
+                          : ""
+                      }
+                    </td>
                     </tr>
                   </table>
                 </td>

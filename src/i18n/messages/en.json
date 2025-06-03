@@ -67,7 +67,7 @@
       "phone": "Phone",
       "date": "Visit Date",
       "time": "Visit Time",
-      "message": "Message",
+      "message": "Message (Optional)",
       "submit": "SEND MESSAGE",
       "sending": "Sending...",
       "success": "Message sent successfully",

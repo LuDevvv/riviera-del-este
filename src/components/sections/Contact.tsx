@@ -5,7 +5,11 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ContactSchema, ContactData } from "@lib/types/contact";
+import {
+  ContactSchema,
+  ContactFormData,
+  transformContactData,
+} from "@lib/types/contact";
 import {
   Calendar,
   Clock,
@@ -16,6 +20,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@components/ui/AnimatedSection";
 import { useLocale } from "next-intl";
+import type { SubmitHandler } from "react-hook-form";
 
 interface SimpleCalendarProps {
   onDateSelect: (date: Date) => void;
@@ -237,7 +242,7 @@ export default function Contact() {
     formState: { errors },
     reset,
     setValue,
-  } = useForm<ContactData>({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(ContactSchema),
     defaultValues: {
       name: "",
@@ -332,10 +337,17 @@ export default function Contact() {
     setIsCalendarOpen(false);
   };
 
-  const onSubmit = async (data: ContactData) => {
+  // Especificar explícitamente el tipo de la función onSubmit
+  const onSubmit: SubmitHandler<ContactFormData> = async (
+    formData: ContactFormData
+  ) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
+
     try {
+      // Transform the data to ensure message is always a string
+      const data = transformContactData(formData);
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -558,11 +570,6 @@ export default function Contact() {
                     aria-invalid={errors.message ? "true" : "false"}
                   ></textarea>
                 </div>
-                {errors.message && (
-                  <p className="text-red-500 text-sm mt-1" role="alert">
-                    {t("messageTooShort")}
-                  </p>
-                )}
               </div>
 
               <div className="flex flex-col items-start">

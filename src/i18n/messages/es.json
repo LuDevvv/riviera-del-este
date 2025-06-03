@@ -67,7 +67,7 @@
       "phone": "Teléfono",
       "date": "Fecha de Visita",
       "time": "Hora de Visita",
-      "message": "Mensaje",
+      "message": "Mensaje (Opcional)",
       "submit": "ENVIAR MENSAJE",
       "sending": "Enviando...",
       "success": "Mensaje enviado exitosamente",
