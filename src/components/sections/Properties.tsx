@@ -153,7 +153,7 @@ export default function Properties() {
             </p>
           </AnimatedSection>
 
-          {/* Special Offer */}
+          {/* Special Offer
           <AnimatedSection animation="scaleIn" delay={600} threshold={0.3}>
             <div className="mx-auto">
               <div className="flex flex-col justify-center items-center bg-secondary rounded-2xl p-3 md:p-4 text-white relative overflow-hidden">
@@ -204,7 +204,7 @@ export default function Properties() {
                 </div>
               </div>
             </div>
-          </AnimatedSection>
+          </AnimatedSection> */}
         </div>
 
         {/* Filter Tabs */}

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import FeaturesBar from "../ui/FeaturesBar";
-import CounterSection from "../ui/Counter";
+// import CounterSection from "../ui/Counter";
 import VideoBackground from "../ui/VideoBackground";
 import { CalendarFold } from "lucide-react";
 import { useScrollTo } from "@hooks/useScrollTo";
@@ -29,7 +29,7 @@ export default function Hero() {
         title={t("headline")}
       />
       <div className="container mx-auto px-4 z-10 max-w-[1300px] pt-16 md:pt-4">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-evenly gap-12 md:gap-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-start gap-12 md:gap-8">
           <div className="text-white md:max-w-lg">
             <h1 className="font-sans text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-3">
               {t("headline")}
@@ -59,9 +59,10 @@ export default function Hero() {
             </div>
           </div>
 
-          <div>
+          {/* Counter section commented out */}
+          {/* <div>
             <CounterSection />
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -45,7 +45,7 @@ export default function Footer() {
         <div className="absolute inset-0 bg-primary/90" />
       </div>
 
-      {/* Event Banner */}
+      {/* Event Banner
       <div className="relative z-10 bg-secondary py-4">
         <div className="container mx-auto px-4 max-w-[1300px]">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
@@ -59,7 +59,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Footer */}
       <div className="relative z-10 container mx-auto px-4 max-w-[1300px] py-12">
